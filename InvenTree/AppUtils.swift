@@ -11,6 +11,9 @@ func showSuccess(msg:String){
 func showNotice(msg:String){
     SCLAlertView().showNotice("Loading",subTitle:msg)
 }
+func showInfo(msg:String){
+    SCLAlertView().showInfo("Here you go",subTitle:msg)
+}
 func splitString(str:String,delimiter:String) -> String{
     var returnString = ""
     for char in str {

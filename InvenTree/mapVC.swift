@@ -150,7 +150,8 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
         let aqi = self.data["data"]["current"]["pollution"]["aqius"].stringValue
         let city = self.data["data"]["city"].stringValue
         print(aqi,city)
-       let v = UIView(frame: CGRect(x:self.view.frame.width-120,y:self.view.frame.height-200,width:100,height: 80))
+       let v = UIButton(frame: CGRect(x:self.view.frame.width-120,y:self.view.frame.height-200,width:100,height: 80))
+        v.addTarget(self, action: #selector(self.toAqi), for: .touchUpInside)
         v.backgroundColor = UIColor.white
         v.layer.cornerRadius = 15
         v.layer.borderWidth = 2
@@ -172,6 +173,16 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
        self.mapView.addSubview(v)
        aqiHUd.dismiss()
     }
+    @objc func toAqi(sender: UIButton!) {
+        print("AQI BUTTON PRESSED")
+        self.performSegue(withIdentifier: "toAqi", sender: self)
+    }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 }
