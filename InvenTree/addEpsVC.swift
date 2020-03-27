@@ -118,7 +118,7 @@ class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControll
                                        "location-lat":self.coord.latitude as Any,
                                        "location-lon":self.coord.longitude as Any,
                                        "user-given-name":globalUser.givenName as Any,
-                                       "approx-area":self.areaTf.text as Any,
+                                       "approx-area":self.areaTf.text?.floatValue,
                                        "photo-url":downloadUrl.absoluteString
                                    ];
                                    ref.setValue(epsDic) { (error, ref) -> Void in

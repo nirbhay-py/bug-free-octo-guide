@@ -16,6 +16,11 @@
 		1CB14250242C40CF0037C77C /* viewDrivesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1424F242C40CF0037C77C /* viewDrivesVC.swift */; };
 		1CB14252242C473C0037C77C /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB14251242C473C0037C77C /* Drive.swift */; };
 		1CC252D824295EF900D6479C /* aqiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC252D724295EF900D6479C /* aqiVC.swift */; };
+		1CE2B3B2242DA0B200DCDF1D /* hubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2B3B1242DA0B200DCDF1D /* hubVC.swift */; };
+		1CE2B3B4242DA89D00DCDF1D /* yourDrivesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2B3B3242DA89D00DCDF1D /* yourDrivesVC.swift */; };
+		1CE2B3B6242DACEB00DCDF1D /* Drive2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2B3B5242DACEB00DCDF1D /* Drive2.swift */; };
+		1CE2B3B8242DAD2100DCDF1D /* Attendee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2B3B7242DAD2100DCDF1D /* Attendee.swift */; };
+		1CE2B3BA242DBAFE00DCDF1D /* cellDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2B3B9242DBAFE00DCDF1D /* cellDetailsVC.swift */; };
 		1CE43BA423FF235F00052D94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE43BA323FF235F00052D94 /* AppDelegate.swift */; };
 		1CE43BA623FF235F00052D94 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE43BA523FF235F00052D94 /* SceneDelegate.swift */; };
 		1CE43BAD23FF235F00052D94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE43BAB23FF235F00052D94 /* Main.storyboard */; };
@@ -51,6 +56,11 @@
 		1CB1424F242C40CF0037C77C /* viewDrivesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewDrivesVC.swift; sourceTree = "<group>"; };
 		1CB14251242C473C0037C77C /* Drive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
 		1CC252D724295EF900D6479C /* aqiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aqiVC.swift; sourceTree = "<group>"; };
+		1CE2B3B1242DA0B200DCDF1D /* hubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hubVC.swift; sourceTree = "<group>"; };
+		1CE2B3B3242DA89D00DCDF1D /* yourDrivesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourDrivesVC.swift; sourceTree = "<group>"; };
+		1CE2B3B5242DACEB00DCDF1D /* Drive2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive2.swift; sourceTree = "<group>"; };
+		1CE2B3B7242DAD2100DCDF1D /* Attendee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendee.swift; sourceTree = "<group>"; };
+		1CE2B3B9242DBAFE00DCDF1D /* cellDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellDetailsVC.swift; sourceTree = "<group>"; };
 		1CE43BA023FF235F00052D94 /* InvenTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvenTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE43BA323FF235F00052D94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CE43BA523FF235F00052D94 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +139,11 @@
 				1C48B6A42429CC570099FC73 /* hostDriveVC.swift */,
 				1CB1424F242C40CF0037C77C /* viewDrivesVC.swift */,
 				1CB14251242C473C0037C77C /* Drive.swift */,
+				1CE2B3B1242DA0B200DCDF1D /* hubVC.swift */,
+				1CE2B3B3242DA89D00DCDF1D /* yourDrivesVC.swift */,
+				1CE2B3B5242DACEB00DCDF1D /* Drive2.swift */,
+				1CE2B3B7242DAD2100DCDF1D /* Attendee.swift */,
+				1CE2B3B9242DBAFE00DCDF1D /* cellDetailsVC.swift */,
 			);
 			path = InvenTree;
 			sourceTree = "<group>";
@@ -284,6 +299,7 @@
 				1CE43BC423FF2DDD00052D94 /* addTreeVC.swift in Sources */,
 				1CE43BA423FF235F00052D94 /* AppDelegate.swift in Sources */,
 				1CB14252242C473C0037C77C /* Drive.swift in Sources */,
+				1CE2B3B4242DA89D00DCDF1D /* yourDrivesVC.swift in Sources */,
 				1C48B6A52429CC570099FC73 /* hostDriveVC.swift in Sources */,
 				1CE43BC223FF26D600052D94 /* AppUtils.swift in Sources */,
 				1CE43BC623FF4AE900052D94 /* mapVC.swift in Sources */,
@@ -291,6 +307,10 @@
 				1CB14250242C40CF0037C77C /* viewDrivesVC.swift in Sources */,
 				1CE43BC023FF267200052D94 /* signInVC.swift in Sources */,
 				1C7533722428FAB600DAE793 /* addVC.swift in Sources */,
+				1CE2B3B8242DAD2100DCDF1D /* Attendee.swift in Sources */,
+				1CE2B3B6242DACEB00DCDF1D /* Drive2.swift in Sources */,
+				1CE2B3BA242DBAFE00DCDF1D /* cellDetailsVC.swift in Sources */,
+				1CE2B3B2242DA0B200DCDF1D /* hubVC.swift in Sources */,
 				1CE43BA623FF235F00052D94 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

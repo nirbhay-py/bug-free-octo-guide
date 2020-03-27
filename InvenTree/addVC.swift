@@ -24,7 +24,7 @@ class addVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-         navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.navigationItem.setHidesBackButton(true, animated: true);
     }
     override func viewDidDisappear(_ animated: Bool) {
          navigationController?.setNavigationBarHidden(false, animated: animated)

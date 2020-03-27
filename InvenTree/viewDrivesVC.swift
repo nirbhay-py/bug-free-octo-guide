@@ -11,9 +11,12 @@ import Firebase
 import JGProgressHUD
 import CoreLocation
 import GoogleMaps
+import MapKit
 
 class tableCell:UITableViewCell{
     var drive:Drive!
+    var userCoord:CLLocationCoordinate2D!
+    
     @IBOutlet weak var organiserName: UILabel!
     @IBOutlet weak var goalLbl: UILabel!
     @IBOutlet weak var attendeesLbl: UILabel!
@@ -21,18 +24,69 @@ class tableCell:UITableViewCell{
     @IBOutlet weak var distLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     @IBAction func joinBtnPressed(_ sender: Any) {
+        var keys = [String]()
+        var flag:Bool = false
         let hud = JGProgressHUD.init()
         hud.show(in:self.contentView)
+        let key_ref = Database.database().reference().child("user-node").child(splitString(str: globalUser.email, delimiter: ".")).child("drives-joined")
+        key_ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            let val = snapshot.value as? [String:AnyObject] ?? nil
+            if(val==nil){
+                hud.dismiss()
+                print("Global user has not joined a drive before.\n")
+                print("Allowed to proceed to next conditional block\n")
+                print("keys=\(keys)\n")
+                flag = false
+                self.join(flag: flag)
+            }else{
+                print("Global user has joined drives before.\n")
+                print("Checking if global user has joined drive with drive_key=\(self.drive.driveKey ?? "Drive key not found")\n")
+                print("Value=\(val)\n")
+                print("Iterating over val\n")
+                var count:Int=1
+                for drive in val!{
+                    print("For drive=\(count)")
+                    print("drive=\(drive)")
+                    print("key=\(drive.value["drive-key"]!)")
+                    keys.append(drive.value["drive-key"] as! String)
+                    count += 1
+                }
+                print("Loop terminated with keys=\(keys)\n")
+                print("Looking for key=\(self.drive.driveKey!)")
+                var nested_flag = false
+                for val in keys{
+                    if val == (self.drive.driveKey)!{
+                        print("checking if \(val) == \(self.drive.driveKey!)")
+                        nested_flag = true
+                        print("result of above conditional=\(nested_flag)")
+                        break
+                    }
+                }
+                hud.dismiss()
+                self.join(flag: nested_flag)
+            }
+        })
+    }
+    
+    func join(flag:Bool){
+        print("join() called to thread.")
+        print("Value of flag=\(flag)")
         let drive_ref = Database.database().reference().child("drives-node").child(drive.driveKey)
-        let user_ref = Database.database().reference().child("user-node").child(drive.email).child(drive.userKey)
-        if(drive.email==splitString(str: globalUser.email, delimiter: ".")){
-            showAlert(msg: "You can't join your own drive!")
+        let user_ref = Database.database().reference().child("user-node").child(drive.email).child("drives-organised").child(drive.userKey)
+        let hud = JGProgressHUD.init()
+        hud.show(in:self.contentView)
+        if(flag==true){
             hud.dismiss()
+            showAlert(msg: "You have already joined this drive.")
+        }
+        else if(drive.email==splitString(str: globalUser.email, delimiter: ".")){
+            hud.dismiss()
+            showAlert(msg: "You can't join your own drive!")
         }else{
             var attendees:String!
             drive_ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 let drive = snapshot.value as? NSDictionary
-                attendees = drive!["attendees"] as! String
+                attendees = (drive!["attendees"] as! String)
                 var int_attendees = Int(attendees) ?? 0
                 int_attendees += 1
                 attendees = String(int_attendees)
@@ -41,7 +95,37 @@ class tableCell:UITableViewCell{
                     if(error == nil){
                         user_ref.updateChildValues(updates) {(error,ref) -> Void in
                             if(error == nil){
-                                hud.dismiss()
+                                let attendees_ref = user_ref.child("attendees-list").childByAutoId()
+                                let attendee_dic : [String:Any] = [
+                                    "user-name":globalUser.givenName as Any,
+                                    "user-email":globalUser.email as Any,
+                                    "trees-planted":globalUser.treesPlanted as Any,
+                                    "photo-url":globalUser.photoUrl as Any
+                                ]
+                                attendees_ref.setValue(attendee_dic) {(error,ref) -> Void in
+                                    if(error == nil){
+                                        let drive_dic:[String:Any]=[
+                                            "organiser-name":self.drive.name as Any,
+                                            "location-lat":self.drive.location.latitude as Any,
+                                            "location-lon":self.drive.location.longitude as Any,
+                                            "time":self.drive.date as Any,
+                                            "drive-key":self.drive.driveKey as Any
+                                        ]
+                                        let user_joined_ref = Database.database().reference().child("user-node").child(splitString(str: globalUser.email, delimiter: ".")).child("drives-joined").childByAutoId()
+                                        user_joined_ref.setValue(drive_dic) {(error, ref) -> Void in
+                                            if(error == nil){
+                                                hud.dismiss()
+                                                showSuccess(msg: "You have successfully joined this drive!")
+                                            }else{
+                                                hud.dismiss()
+                                                showAlert(msg: error!.localizedDescription)
+                                            }
+                                        }
+                                    }else{
+                                        hud.dismiss()
+                                        showAlert(msg: error!.localizedDescription)
+                                    }
+                                }
                             }else{
                                 hud.dismiss()
                                 showAlert(msg: error!.localizedDescription)
@@ -61,6 +145,15 @@ class tableCell:UITableViewCell{
         }
     }
     
+    @IBAction func openMaps(_ sender: Any) {
+        let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: userCoord.latitude, longitude: userCoord.longitude)))
+        source.name = "You"
+
+        let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: drive.location.latitude, longitude: drive.location.longitude)))
+        destination.name = drive.name + "'s drive."
+
+        MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+    }
 }
 class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate{
     @IBOutlet weak var addressLbl: UILabel!
@@ -78,6 +171,7 @@ class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,C
         let cell = tableView.dequeueReusableCell(withIdentifier: "driveCell", for: indexPath) as! tableCell
         let i = indexPath.row
         cell.drive = drives[i]
+        cell.userCoord = self.coord
         let attendeesStr:String = cell.drive.attendees + "/" + cell.drive.needed
         cell.attendeesLbl.text = attendeesStr
         cell.organiserName.text = cell.drive.name
@@ -175,12 +269,12 @@ class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,C
         else if (unit == "N") {
             dist = dist * 0.8684
         }
-        return dist
+        return dist.round(to:2)
     }
     func deg2rad(deg:Double) -> Double {
         return deg * Double.pi / 180
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 320
+        return 350
     }
 }

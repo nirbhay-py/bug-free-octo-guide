@@ -37,6 +37,7 @@ class hostDriveVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate
         print("called")
         let location:CLLocation = locations[0]
         coord = location.coordinate
+        locationManager.stopUpdatingLocation()
         hud.dismiss()
         initMap()
     }
@@ -88,10 +89,11 @@ class hostDriveVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate
             showAlert(msg: "You can't leave fields blank.")
     }else if(phoneTf.text?.count != 10){
             showAlert(msg: "Please enter a 10 digit phone number.")
-        }else{
+    }else if(strDate==""){
+            showAlert(msg: "You can't leave the time and date empty.")
+    }else{
          hud.show(in: self.view)
-           
-        let user_ref = Database.database().reference().child("user-node").child(splitString(str: globalUser.email, delimiter: ".")).child("drives").childByAutoId()
+        let user_ref = Database.database().reference().child("user-node").child(splitString(str: globalUser.email, delimiter: ".")).child("drives-organised").childByAutoId()
         let drive_ref = Database.database().reference().child("drives-node").childByAutoId()
         let driveDic:[String:Any]=[
                        "user-name":globalUser.name,
@@ -118,11 +120,10 @@ class hostDriveVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate
                     }else{
                         showSuccess(msg: "Your drive has been uploaded with success.")
                         hud.dismiss()
+                        }
                     }
                 }
             }
-        }
-        
         }
     }
 }

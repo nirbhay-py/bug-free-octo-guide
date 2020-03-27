@@ -105,6 +105,31 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
                 marker.map = self.mapView
             }
         })
+            let drive_ref = Database.database().reference().child("drives-node")
+            _ = drive_ref.observe(DataEventType.value, with: { (snapshot) in
+                let reports = snapshot.value as! [String:AnyObject]
+                let img = UIImage(named: "drive")
+                for report in reports{
+                    let lat = report.value["location-lat"] as! Double
+                    let lon = report.value["location-lon"] as! Double
+                    let time = report.value["time"] as! String
+                    let attendees = report.value["attendees"] as! String
+                    let name = report.value["user-name"] as! String
+                    let needed = report.value["volunteers-req"] as! String
+                    let phone = report.value["phone-no"] as! String
+                    let goal = report.value["tree-goal"] as! String
+                    let position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                    let marker = GMSMarker(position: position)
+                    marker.icon = img
+                    marker.title = time + " Goal: " + goal + " trees"
+                    var str = "Organised by: " + String(name)
+                    str += "\nPhone: " + phone
+                    str += "\nAttending: " + String(attendees)
+                    str += "\nVolunteers needed: " + String(needed)
+                    marker.snippet = str
+                    marker.map = self.mapView
+                }
+        })
         let eps_ref = Database.database().reference().child("eps-node")
         _ = eps_ref.observe(DataEventType.value, with: { (snapshot) in
             let reports = snapshot.value as! [String:AnyObject]
@@ -148,6 +173,8 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
     }
     func displayAQI(){
         let aqi = self.data["data"]["current"]["pollution"]["aqius"].stringValue
+        let int_aqi = Int(aqi) ?? 0
+        let mainColor = getColor(aqi: int_aqi)
         let city = self.data["data"]["city"].stringValue
         print(aqi,city)
        let v = UIButton(frame: CGRect(x:self.view.frame.width-120,y:self.view.frame.height-200,width:100,height: 80))
@@ -155,20 +182,20 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
         v.backgroundColor = UIColor.white
         v.layer.cornerRadius = 15
         v.layer.borderWidth = 2
-        v.layer.borderColor = UIColor.systemGreen.cgColor
+        v.layer.borderColor = mainColor.cgColor
        let aqiLbl = UILabel(frame: CGRect(x:0,y:0,width:90,height:40))
        aqiLbl.center = CGPoint(x:v.frame.width/2, y:v.frame.height/2-10)
        aqiLbl.font = aqiLbl.font.withSize(40)
        aqiLbl.textAlignment = .center
-       aqiLbl.textColor = UIColor.systemGreen
+       aqiLbl.textColor = mainColor
        aqiLbl.text = aqi
        v.addSubview(aqiLbl)
        let catLbl = UILabel(frame: CGRect(x:0,y:0,width:200,height:20))
        catLbl.center = CGPoint(x:v.frame.width/2, y:v.frame.height/2+15)
        catLbl.font = catLbl.font.withSize(15)
        catLbl.textAlignment = .center
-       catLbl.textColor = UIColor.systemGreen
-       catLbl.text = "AQI"
+       catLbl.textColor = mainColor
+       catLbl.text = "Click here"
        v.addSubview(catLbl)
        self.mapView.addSubview(v)
        aqiHUd.dismiss()
@@ -185,4 +212,21 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    func getColor(aqi:Int) -> UIColor{
+        if(aqi<=50){
+            return UIColor.systemGreen
+        }else if(aqi<=100){
+            return UIColor.systemYellow
+        }else if(aqi<=150){
+            return UIColor.systemOrange
+        }else if(aqi<=200){
+            return UIColor.systemRed
+        }else if(aqi<=300){
+            return UIColor.systemPurple
+        }
+        else{
+            return UIColor.black
+        }
+    }
 }
+

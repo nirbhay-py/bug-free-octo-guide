@@ -18,7 +18,8 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
     @IBOutlet weak var searchTxtBox: SearchTextField!
     @IBOutlet weak var infoLbl: UILabel!
     @IBOutlet weak var addressLbl: UILabel!
-    
+    @IBOutlet weak var ageTf: UITextField!
+    @IBOutlet weak var diameterTf: UITextField!
     let locationManager = CLLocationManager()
     let hud = JGProgressHUD.init()
     var coord:CLLocationCoordinate2D!
@@ -94,11 +95,11 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
     }
     @IBAction func submitBtnPressed(_ sender: Any) {
         let localHud = JGProgressHUD.init()
-        let species = searchTxtBox.text
-        let height = heightTf.text
-        if(height==""||species==""){
-            showAlert(msg: "You can't leave these fields blank!")
-        }else if(self.imgData==nil){
+        let species = searchTxtBox.text ?? "Empty"
+        let height = heightTf.text ?? "Empty"
+        let age = ageTf.text ?? "Empty"
+        let diameter = diameterTf.text ?? "Empty"
+        if(self.imgData==nil){
             showAlert(msg: "You can't proceed without selecting an image.")
         }else{
             localHud.show(in: self.view)
@@ -127,6 +128,8 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
                                        "location-lat":self.coord.latitude as Any,
                                        "location-lon":self.coord.longitude as Any,
                                        "user-given-name":globalUser.givenName as Any,
+                                       "age":age as Any,
+                                       "diameter":diameter as Any,
                                        "photo-url":downloadUrl.absoluteString
                                    ];
                                    ref.setValue(treeDic) { (error, ref) -> Void in
