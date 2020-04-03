@@ -12,7 +12,10 @@ class hubVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: true);
+//        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+//        navigationItem.leftBarButtonItem = backButton
+        navigationItem.hidesBackButton = true
+
     }
     
 

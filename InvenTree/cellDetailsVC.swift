@@ -11,7 +11,6 @@ class tableCell3:UITableViewCell{
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
-    @IBOutlet weak var treesPlantedLbl: UILabel!
     
 }
 class cellDetailsVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
@@ -27,12 +26,11 @@ class cellDetailsVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         cell.emailLbl.text = self.attendees[i].email
         cell.profilePic.load(url: URL(string: self.attendees[i].photoUrl)!)
         cell.nameLbl.text = self.attendees[i].name
-        cell.treesPlantedLbl.text = "\(self.attendees[i].name as! String) has planted \(self.attendees[i].trees_planted as! String) tree(s) with us so far."
         return cell
 
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 90
     }
     
     @IBOutlet weak var tableView: UITableView!

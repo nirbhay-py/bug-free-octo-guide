@@ -9,7 +9,8 @@
 import UIKit
 import Firebase
 import JGProgressHUD
-
+import CoreLocation
+import MapKit
 var globalDrive:Drive2!
 
 class tableCell2: UITableViewCell
@@ -22,6 +23,14 @@ class tableCell2: UITableViewCell
     
     @IBAction func seeMore(_ sender: Any) {
         globalDrive = self.drive
+    }
+
+    @IBAction func openLoc(_ sender: Any) {
+        let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: drive.location.latitude, longitude: drive.location.longitude)))
+        source.name = "You"
+        let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: drive.location.latitude, longitude: drive.location.longitude)))
+        destination.name = "Your drive on " + self.drive.date
+        MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
     }
     
 }
@@ -43,7 +52,7 @@ class yourDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         cell.dateLbl.text = drives[i].date
         cell.drive = drives[i]
         cell.attendeesLbl.text = drives[i].num_attendees
-        cell.goalLbl.text = drives[i].goal
+        cell.goalLbl.text = drives[i].goal + " trees"
         return cell
     }
     
@@ -93,8 +102,10 @@ class yourDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
                     let time = drive.value["time"] as! String
                     let goal = drive.value["tree-goal"] as! String
                     let attendees = drive.value["attendees"] as! String
-                    let thisDrive = Drive2(num_attendess: attendees, goal: goal, date: time, attendees: attendees_list)
-                    print(thisDrive.num_attendees)
+                    let lat = drive.value["location-lat"] as! Double
+                    let lon = drive.value["location-lon"] as! Double
+                    let pos = CLLocationCoordinate2DMake(lat, lon)
+                    let thisDrive = Drive2(num_attendess: attendees, goal: goal, date: time, attendees: attendees_list,location:pos)
                     self.drives.append(thisDrive)
                     self.tableView.reloadData()
                 }
@@ -103,6 +114,6 @@ class yourDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         })
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 190
     }
 }

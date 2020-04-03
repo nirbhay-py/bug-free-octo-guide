@@ -26,6 +26,8 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
     let camera = GMSCameraPosition.camera(withLatitude: 60, longitude:60, zoom: 16.0)
     lazy var mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
     override func viewDidLoad() {
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
         super.viewDidLoad()
         setUpLocation()
         self.view = mapView

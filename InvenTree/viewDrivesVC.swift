@@ -109,6 +109,7 @@ class tableCell:UITableViewCell{
                                             "location-lat":self.drive.location.latitude as Any,
                                             "location-lon":self.drive.location.longitude as Any,
                                             "time":self.drive.date as Any,
+                                            "ph-number":self.drive.phone as Any,
                                             "drive-key":self.drive.driveKey as Any
                                         ]
                                         let user_joined_ref = Database.database().reference().child("user-node").child(splitString(str: globalUser.email, delimiter: ".")).child("drives-joined").childByAutoId()
@@ -148,10 +149,8 @@ class tableCell:UITableViewCell{
     @IBAction func openMaps(_ sender: Any) {
         let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: userCoord.latitude, longitude: userCoord.longitude)))
         source.name = "You"
-
         let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: drive.location.latitude, longitude: drive.location.longitude)))
         destination.name = drive.name + "'s drive."
-
         MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
     }
 }
@@ -224,7 +223,6 @@ class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,C
                 let drives = snapshot.value as! [String:AnyObject]
                 print(drives)
                 self.driveCount = drives.count
-                print("self.driveCount=\(self.driveCount)")
                 for drive in drives{
                     print(drive)
                     let lat = drive.value["location-lat"] as! Double
@@ -244,14 +242,15 @@ class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,C
                     let thisDrive = Drive(name: user_name, location: loc, attendees: attendees, needed: needed, phone: phone, distance: Float(distance), date: date, goal: goal,userKey:uKey,driveKey:dKey,email:email)
                     self.drives.append(thisDrive)
                     self.tableView.reloadData()
+                    self.sortDrives()
                 }
-            print("self.drives=\(self.drives)")
             hud.dismiss()
             }) { (error) in
                 hud.dismiss()
                 showAlert(msg: "An error occured -> \(error.localizedDescription)")
                 print(error.localizedDescription)
         }
+        
     }
     
     func rad2deg(rad:Double) -> Double {
@@ -277,4 +276,10 @@ class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,C
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 350
     }
+    func sortDrives(){
+        print("sortDrives() called to thread.")
+        self.drives.sort(by: { $0.distance < $1.distance })
+        self.tableView.reloadData()
+    }
+
 }

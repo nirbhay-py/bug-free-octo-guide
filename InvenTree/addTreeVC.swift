@@ -12,6 +12,7 @@ import Firebase
 import GoogleMaps
 import SearchTextField
 import JGProgressHUD
+import SafariServices
 
 class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
@@ -167,6 +168,11 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
         self.imgData = nil
         self.searchTxtBox.text = ""
         self.heightTf.text = ""
+    }
+    @IBAction func openLink(_ sender: Any) {
+        
+        let svc = SFSafariViewController(url: URL(string:"http://www.flowersofindia.net/")!)
+        present(svc, animated: true, completion: nil)
     }
     
 }
