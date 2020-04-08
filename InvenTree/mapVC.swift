@@ -17,10 +17,25 @@ import SwiftyJSON
 
 
 class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
+    var treesCount = 0;
     let locationManager = CLLocationManager()
     var coords:CLLocationCoordinate2D!
     let hud = JGProgressHUD.init()
     var data:JSON!
+    let c02:Double = 2.15749
+    
+    let stormwater:Double = 3.97053
+    let ap:Double = 62.41663
+    let energy:Double = 57.76375
+    let avoided:Double = 8.32553
+    var co2res = 0.0
+    var apres = 0.0
+    var energyres = 0.0
+    var avoidedres = 0.0
+    var stormwaterres = 0.0
+    var total = 0.0
+
+    
     let aqiHUd = JGProgressHUD.init()
     let key:String = "f022a338-cfee-4723-a329-f111260f10f4"
     let camera = GMSCameraPosition.camera(withLatitude: 60, longitude:60, zoom: 16.0)
@@ -65,6 +80,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
         _ = ref.observe(DataEventType.value, with: { (snapshot) in
             let reports = snapshot.value as! [String:AnyObject]
             let markerImg = UIImage(named: "tree")
+            self.treesCount = reports.count
             for report in reports{
                 let lat = report.value["location-lat"] as! Double
                 let lon = report.value["location-lon"] as! Double
@@ -201,6 +217,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
        v.addSubview(catLbl)
        self.mapView.addSubview(v)
        aqiHUd.dismiss()
+        showBenefits()
     }
     @objc func toAqi(sender: UIButton!) {
         print("AQI BUTTON PRESSED")
@@ -229,6 +246,45 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
         else{
             return UIColor.black
         }
+    }
+    func showBenefits(){
+         co2res = c02 * Double(self.treesCount)
+         apres = ap * Double(self.treesCount)
+         energyres = energy * Double(self.treesCount)
+         avoidedres = avoided  * Double(self.treesCount)
+         stormwaterres = stormwater * Double(self.treesCount)
+        
+        var total = co2res + apres + energyres + avoidedres + stormwaterres
+        total = total.round(to: 2)
+
+                
+        let mainView = UIButton(frame:(CGRect(x: 20, y: 120, width: self.view.frame.width-40, height: 80)))
+        mainView.backgroundColor = UIColor.white
+        mainView.layer.cornerRadius = 15
+        mainView.layer.borderWidth = 2
+        mainView.layer.borderColor = UIColor.systemGreen.cgColor
+        mainView.addTarget(self, action: #selector(self.showBenefitsDetails), for: .touchUpInside)
+
+        var titleLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+        titleLbl.center = CGPoint(x:mainView.frame.width/2, y:mainView.frame.height/2 + 20)
+        titleLbl.text = "Total benefits. Click here to know more."
+        titleLbl.textColor = UIColor.systemGreen
+        titleLbl.adjustsFontSizeToFitWidth = true
+        mainView.addSubview(titleLbl)
+        
+        var benLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        benLbl.center = CGPoint(x:mainView.frame.width/2, y:mainView.frame.height/2-10)
+        benLbl.text = "$" + String(total)
+        benLbl.font = benLbl.font.withSize(40)
+        benLbl.textColor = UIColor.systemGreen
+        mainView.addSubview(benLbl)
+        
+        self.mapView.addSubview(mainView)
+    }
+    @objc func showBenefitsDetails(sender: UIButton!){
+        print("showBenefitsPressed()")
+        var info = "Using data collected for over 50 tree species in the US Government's iTree Portal, we have carefully determined the total benefits of all trees registered with InvenTree. They are as follows:\nTotal CO2 sequestered: $\(co2res)\nTotal storm water runoff avoided: $\(stormwaterres)\nTotal air pollution removed: $\(apres)\nEnergy usage: $\(energyres)\nAvoided energy emissions: $\(avoidedres)"
+        showInfo(msg:info)
     }
 }
 

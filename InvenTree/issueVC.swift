@@ -94,7 +94,10 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
         let localHud = JGProgressHUD.init()
         if(self.imgData==nil){
             showAlert(msg: "You can't proceed without selecting an image.")
-        }else{
+        }else if(self.issue==""){
+            showAlert(msg: "You must select an issue type")
+        }
+        else{
             localHud.show(in: self.view)
             var downloadUrl:URL!
             let storage = Storage.storage()
@@ -150,6 +153,9 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
     func resetFields(){
         self.issue = ""
         self.imgData = nil
+    }
+    @IBAction func showUpp(_ sender: Any) {
+        showInfo(msg: "We're committed to solving all tree-related issues that pop up on te map. In that spirit, we forward all issues to the local environmental/development body in the city, and they ensure that it is resolved with their resources.")
     }
     
     

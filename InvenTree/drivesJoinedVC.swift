@@ -82,13 +82,13 @@ class drivesJoinedVC: UIViewController, UITableViewDelegate,UITableViewDataSourc
             }else{
                 self.drivesCount = val!.count
                 for elem in val!{
-                    let number = elem.value["ph-number"] as! String
+                    let number = elem.value["ph-number"] as! Int
                     let lat = elem.value["location-lat"] as! Double
                     let lon = elem.value["location-lon"] as! Double
                     let user_name = elem.value["organiser-name"] as! String
                     let time = elem.value["time"] as! String
                     let loc = CLLocationCoordinate2DMake(lat, lon)
-                    let thisDrive = Drive3(date: time, location: loc, number: number, name: user_name)
+                    let thisDrive = Drive3(date: time, location: loc, number: String(number), name: user_name)
                     print(thisDrive.name)
                     self.drives.append(thisDrive)
                     self.tableView.reloadData()
