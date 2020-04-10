@@ -59,6 +59,7 @@ class yourDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         tableView.delegate = self
         tableView.dataSource = self
         fetchData()

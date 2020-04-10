@@ -27,14 +27,30 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
     var imgData:Data!
     let imagePicker = UIImagePickerController()
 
+    @IBOutlet weak var thumbnail: UIImageView!
     
     @IBOutlet weak var heightTf: UITextField!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier=="proceed")
+        {
+            let destVC = segue.destination as! add2VC
+            destVC.age = self.ageTf.text ?? "Empty"
+            destVC.species = self.searchTxtBox.text ?? "Empty"
+            destVC.diameter = self.diameterTf.text ?? "Empty"
+            destVC.height = self.heightTf.text ?? "Empty"
+            destVC.imgData = self.imgData
+            destVC.coord = self.coord
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         infoLbl.text = "Hi, "+globalUser.givenName+". Follow the instructions below to add a tree to our servers. Your current location will be used to mark the tree on our map."
         setUpLocation()
         setUpSearchBox()
+        self.hideKeyboardWhenTappedAround()
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
@@ -91,77 +107,16 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self.imgData = pickedImage.pngData()
             print(pickedImage.size)
+            thumbnail.image = pickedImage
             self.imagePicker.dismiss(animated: true, completion: nil)
         }
+
     }
-    @IBAction func submitBtnPressed(_ sender: Any) {
-        let localHud = JGProgressHUD.init()
-        let species = searchTxtBox.text ?? "Empty"
-        let height = heightTf.text ?? "Empty"
-        let age = ageTf.text ?? "Empty"
-        let diameter = diameterTf.text ?? "Empty"
+    @IBAction func proceedClicked(_ sender: Any) {
         if(self.imgData==nil){
-            showAlert(msg: "You can't proceed without selecting an image.")
+            showAlert(msg: "You cannot proceed without selecting an image to upload.")
         }else{
-            localHud.show(in: self.view)
-            var downloadUrl:URL!
-            let storage = Storage.storage()
-            let ref = Database.database().reference().child("trees-node").childByAutoId()
-            let st_ref = storage.reference().child("tree-imgs").child(ref.key!)
-            _ = st_ref.putData(self.imgData, metadata: nil) { (metadata, error) in
-                           if(error != nil){
-                               showAlert(msg: error!.localizedDescription)
-                               localHud.dismiss()
-                               self.resetFields()
-                           }else{
-                              st_ref.downloadURL { (url, error) in
-                                if(error != nil){
-                                    showAlert(msg: error!.localizedDescription)
-                                    localHud.dismiss()
-                                   self.resetFields()
-                                }else if(url != nil){
-                                   print("URL fetched with success.\n")
-                                   downloadUrl = url!
-                                   let treeDic:[String:Any]=[
-                                       "species":species as Any,
-                                       "height":height as Any,
-                                       "user-email":globalUser.email as Any,
-                                       "location-lat":self.coord.latitude as Any,
-                                       "location-lon":self.coord.longitude as Any,
-                                       "user-given-name":globalUser.givenName as Any,
-                                       "age":age as Any,
-                                       "diameter":diameter as Any,
-                                       "photo-url":downloadUrl.absoluteString
-                                   ];
-                                   ref.setValue(treeDic) { (error, ref) -> Void in
-                                       if(error == nil){
-                                           globalUser.treesPlanted += 1
-                                           let user_ref = Database.database().reference().child("user-node").child(splitString(str: globalUser.email, delimiter: "."))
-                                        user_ref.observeSingleEvent(of: .value, with: {(snapshot) in
-                                            let value = snapshot.value as! NSDictionary
-                                            var count = value["trees-planted"] as! Int
-                                            count += 1
-                                            let updates : [String:Int] = ["trees-planted":count]
-                                            user_ref.updateChildValues(updates)
-                                        })
-                                           showSuccess(msg: "This tree has been uploaded!")
-                                           localHud.dismiss()
-                                           self.resetFields()
-                                       }
-                                       else{
-                                           localHud.dismiss()
-                                           showAlert(msg: error!.localizedDescription)
-                                           self.resetFields()
-                                       }
-                                   }
-                                }
-                                else{
-                                   showAlert(msg: "Check your network, you may have issues.")
-                               }
-                               }
-                           }
-                       }
-            
+            self.performSegue(withIdentifier: "proceed", sender: nil)
         }
     }
     func resetFields(){
@@ -174,5 +129,5 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
         let svc = SFSafariViewController(url: URL(string:"http://www.flowersofindia.net/")!)
         present(svc, animated: true, completion: nil)
     }
-    
 }
+

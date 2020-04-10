@@ -23,6 +23,7 @@ class treeKeyVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         picker.dataSource = self
         picker.delegate = self
         tv.isHidden = true

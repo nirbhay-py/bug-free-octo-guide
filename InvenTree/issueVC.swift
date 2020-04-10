@@ -13,16 +13,19 @@ import GoogleMaps
 import JGProgressHUD
 
 class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate{
+    @IBOutlet weak var otherDetailstf: UITextField!
     
+    @IBOutlet weak var mapView: GMSMapView!
     
     @IBOutlet weak var infoLbl: UILabel!
     @IBOutlet weak var addressLbl: UILabel!
     @IBOutlet weak var picker: UIPickerView!
     let imagePicker = UIImagePickerController()
 
+    @IBOutlet weak var thumbnail: UIImageView!
     
     
-    var issues:[String]=["Logging","Dead tree","Tree needs water","Tree growing on a road"]
+    var issues:[String]=["Logging","Dead tree","Tree needs water","Tree growing on a road","Other"]
     var issue:String = ""
     
     let locationManager = CLLocationManager()
@@ -30,9 +33,10 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
     var imgData:Data!
     var coord:CLLocationCoordinate2D!
     override func viewDidLoad() {
+        self.hideKeyboardWhenTappedAround()
         super.viewDidLoad()
         _ = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-        infoLbl.text = "Hi, " + globalUser.givenName + ". Here you can upload issues such as tree logging, dead trees, and other concerns in your vicinity. Your current location will be used to mark this issue on our map."
+        infoLbl.text = "Hi, " + globalUser.givenName + ". Here you can upload issues such as tree logging, dead trees, and other concerns in your vicinity. Press and hold the marker to edit location."
         setUpLocation()
         self.picker.delegate = self
         self.picker.dataSource = self
@@ -45,6 +49,7 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
         hud.show(in: self.view,animated: true)
         locationManager.startUpdatingLocation()
     }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("called")
         let location:CLLocation = locations[0]
@@ -59,8 +64,34 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
             }else{
                 print(resp?.results()?.first as Any)
                 self.addressLbl.text = resp?.results()?.first?.lines![0]
+                self.initMap()
             }
         })
+    }
+    func initMap(){
+        print(self.coord)
+        print("initMap called to thread.")
+        let hud = JGProgressHUD.init()
+        hud.show(in: self.view)
+        let cam = GMSCameraPosition.camera(withTarget: coord, zoom: 16)
+        let mapView = GMSMapView.map(withFrame: self.mapView.frame, camera: cam)
+        mapView.isMyLocationEnabled = true
+        let marker = GMSMarker(position: coord)
+        mapView.layer.cornerRadius = 15
+        marker.title = "Issue location"
+        marker.isDraggable = true
+        marker.map = mapView
+        do {
+             mapView.mapStyle = try GMSMapStyle(jsonString: mapStyle)
+        } catch {
+             NSLog("One or more of the map styles failed to load. \(error)")
+        }
+        self.view.addSubview(mapView)
+        hud.dismiss()
+    }
+    func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
+        coord = marker.position
+        print("Marker moved to \(coord as Any)")
     }
     
     
@@ -80,12 +111,13 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
     @IBAction func takePhoto(_ sender: Any) {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self.imgData = pickedImage.pngData()
+            self.thumbnail.image = pickedImage
             print(pickedImage.size)
             self.imagePicker.dismiss(animated: true, completion: nil)
         }
@@ -96,6 +128,8 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
             showAlert(msg: "You can't proceed without selecting an image.")
         }else if(self.issue==""){
             showAlert(msg: "You must select an issue type")
+        }else if(self.issue=="Other" && otherDetailstf.text==""){
+            showAlert(msg: "You must enter some details.")
         }
         else{
             localHud.show(in: self.view)
@@ -119,6 +153,7 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
                                    downloadUrl = url!
                                    let issueDic:[String:Any]=[
                                        "issue-type":self.issue as Any,
+                                       "issue-details":self.otherDetailstf.text ?? "no-details",
                                        "issue-upvotes":1,
                                        "issue-resolved":false as Any,
                                        "user-email":globalUser.email as Any,

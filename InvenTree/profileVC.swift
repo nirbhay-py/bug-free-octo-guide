@@ -14,12 +14,9 @@ class profileVC: UIViewController {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var treesPlantedLbl: UILabel!
-    @IBOutlet weak var stormWaterlbl: UILabel!
-    @IBOutlet weak var apLbl: UILabel!
-    @IBOutlet weak var energylbl: UILabel!
-    @IBOutlet weak var avoidedLbl: UILabel!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var tblbl: UILabel!
-    @IBOutlet weak var co2lbl: UILabel!
     let c02:Double = 2.15749
     let stormwater:Double = 3.97053
     let ap:Double = 62.41663
@@ -27,24 +24,45 @@ class profileVC: UIViewController {
     let avoided:Double = 8.32553
     override func viewDidLoad() {
         super.viewDidLoad()
-        var trees = Double(globalUser.treesPlanted!)
-        profilePic.load(url: URL(string: globalUser.photoUrl)!)
+        self.hideKeyboardWhenTappedAround()
+        let trees = Double(globalUser.treesPlanted!)
+        if(globalUser.photoUrl != ""){
+            profilePic.load(url: URL(string: globalUser.photoUrl)!)
+        }
+        
         nameLbl.text = globalUser.name
-        treesPlantedLbl.text = "You have planted " + String(Int(trees)) + " trees"
-        var co2res = (trees * c02).round(to:2)
-        var stormres = (trees * (stormwater)).round(to:2)
-        var apres = (trees * (ap)).round(to:2)
-        var energyres = (trees * (energy)).round(to:2)
-        var avoidedres = (trees * (avoided)).round(to:2)
-        co2lbl.text = String("$"+String(co2res))
-        stormWaterlbl.text = String("$"+String(stormres))
-        energylbl.text = String("$"+String(energyres))
-        apLbl.text = String("$"+String(apres))
-        avoidedLbl.text = String("$"+String(avoidedres))
-        var total = co2res + stormres + apres + energyres + avoidedres
-        tblbl.text = String("$"+String(total))
+        treesPlantedLbl.text = "You have added " + String(Int(trees)) + " tree(s)"
+        let co2res = (trees * c02).round(to:2)
+        let stormres = (trees * (stormwater)).round(to:2)
+        let apres = (trees * (ap)).round(to:2)
+        let energyres = (trees * (energy)).round(to:2)
+        let avoidedres = (trees * (avoided)).round(to:2)
+        let total = co2res + stormres + apres + energyres + avoidedres
+        
+        tblbl.text = String("$"+String(total.round(to: 2)))
         // Do any additional setup after loading the view.
+        if(trees<11){
+            titleLbl.text = "Seedling"
+            descLbl.text = "Based on your statistics, you have just started your journey into the universe of trees with invenTree, much like a little seedling. We hope you stay put for the entire journey and contribute in every way you can."
+        }else if(trees<101){
+            titleLbl.text = "Plant"
+            descLbl.text = "Based on your statistics, you have become a dedicated member of the InvenTree community and are constantly adding valuable data to our servers, cementing your presence in this world like a growing plant. Continue on this road and become a key factor in saving the world!"
+        }else{
+            titleLbl.text = "Tree"
+            descLbl.text = "Based on your statistics, you’re an invaluable part of the invenTree community! You are committed to bringing a massive change to your life, and that of everyone around you, much like a large tree. Keep inspiring those around you to follow in your footsteps!"
+        }
     }
-
+    @IBAction func showDetails(_ sender: Any) {
+        let trees = Double(globalUser.treesPlanted!)
+        let co2res = (trees * c02).round(to:2)
+        let stormres = (trees * (stormwater)).round(to:2)
+        let apres = (trees * (ap)).round(to:2)
+        let energyres = (trees * (energy)).round(to:2)
+        let avoidedres = (trees * (avoided)).round(to:2)
+        let total = co2res + stormres + apres + energyres + avoidedres
+        let str = " Total benefits: $\(total.round(to: 2))\n CO2 Sequestered: $\(co2res)\n Stormwater runoff avoided: $\(stormres)\n Air pollution removed: $\(apres)\n Total energy usage: $\(energyres)\n Total energy emissions avoided: $\(avoidedres)"
+        showInfo(msg: str)
+    }
+    
 
 }

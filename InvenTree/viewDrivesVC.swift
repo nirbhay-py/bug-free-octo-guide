@@ -209,6 +209,7 @@ class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,C
     
 
     override func viewDidLoad() {
+        self.hideKeyboardWhenTappedAround()
         super.viewDidLoad()
         setUpLocation()
         tableView.delegate = self

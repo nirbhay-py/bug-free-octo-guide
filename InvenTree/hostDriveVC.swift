@@ -25,7 +25,9 @@ class hostDriveVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate
     @IBOutlet weak var datePicker: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         setUpLocation()
+        
     }
     func setUpLocation(){
         locationManager.delegate = self

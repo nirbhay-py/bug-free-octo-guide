@@ -44,6 +44,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         setUpLocation()
         self.view = mapView
         do {
@@ -84,14 +85,14 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
             for report in reports{
                 let lat = report.value["location-lat"] as! Double
                 let lon = report.value["location-lon"] as! Double
-                let email = report.value["user-email"] as! String
+                let name = report.value["user-given-name"] as! String
                 let species = report.value["species"] as! String
                 let height = report.value["height"] as! String
                 let position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 let marker = GMSMarker(position: position)
                 marker.title = species
                 marker.icon = markerImg
-                marker.snippet = "Height:"+height+"m\nEmail:"+email
+                marker.snippet = "Uploaded by: \(name)"
                 marker.map = self.mapView
             }
         })
@@ -117,7 +118,6 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
                     marker.icon = warningImg
                 }
                 var str = "Uploaded by:" + String(name)
-                str += "\nEmail:" + email
                 str += "\nUpvotes:" + String(upvotes)
                 marker.snippet = str
                 marker.map = self.mapView
@@ -155,13 +155,13 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
             for report in reports{
                 let lat = report.value["location-lat"] as! Double
                 let lon = report.value["location-lon"] as! Double
-                let email = report.value["user-email"] as! String
+                let name = report.value["user-given-name"] as! String
                 let approx_area = report.value["approx-area"] as! NSNumber
                 let position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 let marker = GMSMarker(position: position)
                 marker.title = "Empty planting site"
                 marker.icon = markerImg
-                marker.snippet = "Uploaded by: \(email)\nApproximate area: \(approx_area) square mt."
+                marker.snippet = "Uploaded by: \(name)\nApproximate area: \(approx_area) square mt."
                 marker.map = self.mapView
             }
             
@@ -213,7 +213,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
        catLbl.font = catLbl.font.withSize(15)
        catLbl.textAlignment = .center
        catLbl.textColor = mainColor
-       catLbl.text = "Click here"
+       catLbl.text = "AQI."
        v.addSubview(catLbl)
        self.mapView.addSubview(v)
        aqiHUd.dismiss()
@@ -253,29 +253,19 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
          energyres = energy * Double(self.treesCount)
          avoidedres = avoided  * Double(self.treesCount)
          stormwaterres = stormwater * Double(self.treesCount)
-        
+       
         var total = co2res + apres + energyres + avoidedres + stormwaterres
         total = total.round(to: 2)
-
-                
-        let mainView = UIButton(frame:(CGRect(x: 20, y: 120, width: self.view.frame.width-40, height: 80)))
+        let mainView = UIButton(frame:(CGRect(x: 20, y: 100, width: self.view.frame.width-40, height: 60)))
         mainView.backgroundColor = UIColor.white
         mainView.layer.cornerRadius = 15
         mainView.layer.borderWidth = 2
         mainView.layer.borderColor = UIColor.systemGreen.cgColor
         mainView.addTarget(self, action: #selector(self.showBenefitsDetails), for: .touchUpInside)
-
-        var titleLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-        titleLbl.center = CGPoint(x:mainView.frame.width/2, y:mainView.frame.height/2 + 20)
-        titleLbl.text = "Total benefits. Click here to know more."
-        titleLbl.textColor = UIColor.systemGreen
-        titleLbl.adjustsFontSizeToFitWidth = true
-        mainView.addSubview(titleLbl)
-        
-        var benLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
-        benLbl.center = CGPoint(x:mainView.frame.width/2, y:mainView.frame.height/2-10)
-        benLbl.text = "$" + String(total)
-        benLbl.font = benLbl.font.withSize(40)
+        var benLbl = UILabel(frame: CGRect(x: 0, y: 0, width: mainView.frame.width-40, height: 40))
+        benLbl.center = CGPoint(x:mainView.frame.width/2, y:mainView.frame.height/2)
+        benLbl.text = "Click here to know about total tree benefits."
+        benLbl.adjustsFontSizeToFitWidth = true
         benLbl.textColor = UIColor.systemGreen
         mainView.addSubview(benLbl)
         
@@ -283,8 +273,13 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
     }
     @objc func showBenefitsDetails(sender: UIButton!){
         print("showBenefitsPressed()")
-        var info = "Using data collected for over 50 tree species in the US Government's iTree Portal, we have carefully determined the total benefits of all trees registered with InvenTree. They are as follows:\nTotal CO2 sequestered: $\(co2res)\nTotal storm water runoff avoided: $\(stormwaterres)\nTotal air pollution removed: $\(apres)\nEnergy usage: $\(energyres)\nAvoided energy emissions: $\(avoidedres)"
-        showInfo(msg:info)
+        self.performSegue(withIdentifier: "toBen", sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier=="toBen"){
+            let destVC = segue.destination as! viewBenVC
+            destVC.treesCount = self.treesCount
+        }
     }
 }
 

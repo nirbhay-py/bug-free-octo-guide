@@ -29,6 +29,7 @@ class aqiVC: UIViewController,CLLocationManagerDelegate{
     let key:String = "f022a338-cfee-4723-a329-f111260f10f4"
     let locationManager=CLLocationManager()
     override func viewDidLoad() {
+        self.hideKeyboardWhenTappedAround()
         super.viewDidLoad()
         setUpLocation()
         // Do any additional setup after loading the view.

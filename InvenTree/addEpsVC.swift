@@ -13,6 +13,8 @@ import Firebase
 import GoogleMaps
 
 class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate{
+    
+    @IBOutlet weak var thumbnail: UIImageView!
     let locationManager = CLLocationManager()
     @IBOutlet weak var areaTf: UITextField!
     let imagePicker = UIImagePickerController()
@@ -24,6 +26,7 @@ class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControll
     var imgData:Data!
     var coord:CLLocationCoordinate2D!
     override func viewDidLoad() {
+        self.hideKeyboardWhenTappedAround()
         self.viewForMap.layer.cornerRadius = 15
         super.viewDidLoad()
         welcomeLbl.text = "Hi, "+globalUser.givenName+". Follow the instructions below to add an empty planting site to the InvenTree Map. Adding empty planting sites can help fellow users plant new trees and potentially identify locations to host drives."
@@ -64,6 +67,12 @@ class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControll
         let cam = GMSCameraPosition.camera(withTarget: coord, zoom: 16)
         let mapView = GMSMapView.map(withFrame: self.viewForMap.frame, camera: cam)
         mapView.isMyLocationEnabled = true
+        mapView.layer.cornerRadius = 15
+        let marker = GMSMarker(position: coord)
+        viewForMap.layer.cornerRadius = 15
+        marker.title = "Empty planting site location"
+        marker.isDraggable = true
+        marker.map = mapView
         do {
              mapView.mapStyle = try GMSMapStyle(jsonString: mapStyle)
         } catch {
@@ -72,16 +81,21 @@ class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControll
         self.view.addSubview(mapView)
         hud.dismiss()
     }
+    func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
+        coord = marker.position
+        print("Marker moved to \(coord as Any)")
+    }
     @IBAction func takePhoto(_ sender: Any) {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self.imgData = pickedImage.pngData()
             print(pickedImage.size)
+            thumbnail.image = pickedImage
             self.imagePicker.dismiss(animated: true, completion: nil)
         }
     }

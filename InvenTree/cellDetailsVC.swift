@@ -36,8 +36,9 @@ class cellDetailsVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        print(globalDrive.attendees)
         super.viewDidLoad()
+        print(globalDrive.attendees)
+        self.hideKeyboardWhenTappedAround()
         tableView.delegate = self
         tableView.dataSource = self
         if(globalDrive.attendees.count==0){

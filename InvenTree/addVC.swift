@@ -21,6 +21,7 @@ class addVC: UIViewController {
         navigationItem.leftBarButtonItem = backButton
         addIssue.layer.cornerRadius = 15
         addEps.layer.cornerRadius = 15
+        self.hideKeyboardWhenTappedAround()
         addTree.layer.cornerRadius = 15
         // Do any additional setup after loading the view.
     }

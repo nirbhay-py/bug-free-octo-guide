@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>159828869902-f8hb0f2si70ohos2mhrahla1qogo6mcu.apps.googleusercontent.com</string>
+	<string>159828869902-pd6mp3tmsf3ok1m7pb9p1sgdkeb6frpu.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.159828869902-f8hb0f2si70ohos2mhrahla1qogo6mcu</string>
+	<string>com.googleusercontent.apps.159828869902-pd6mp3tmsf3ok1m7pb9p1sgdkeb6frpu</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCxvEYQsHELMw2IfNA2a20h_SY3n1DElMc</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.NirbhaySingh.InvenTree</string>
+	<string>com.ArnavGhatiwala.InvenTree</string>
 	<key>PROJECT_ID</key>
 	<string>inventree-a2522</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:159828869902:ios:e706adb3f9fe7c10d2cd5f</string>
+	<string>1:159828869902:ios:99ddeb51bcafeebed2cd5f</string>
 	<key>DATABASE_URL</key>
 	<string>https://inventree-a2522.firebaseio.com</string>
 </dict>

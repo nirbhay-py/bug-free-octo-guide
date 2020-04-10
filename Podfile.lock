@@ -125,6 +125,7 @@ PODS:
     - SPPermissions/Core
   - SPPermissions/PhotoLibrary (5.3):
     - SPPermissions/Core
+  - Spring (1.0.6)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
@@ -142,6 +143,7 @@ DEPENDENCIES:
   - SPPermissions/Camera
   - SPPermissions/Location
   - SPPermissions/PhotoLibrary
+  - Spring (from `https://github.com/MengTo/Spring.git`)
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -176,6 +178,15 @@ SPEC REPOS:
     - SPPermissions
     - SwiftyJSON
 
+EXTERNAL SOURCES:
+  Spring:
+    :git: https://github.com/MengTo/Spring.git
+
+CHECKOUT OPTIONS:
+  Spring:
+    :commit: 50d92a5b9e08848387ae95bf44c6ad20834f7083
+    :git: https://github.com/MengTo/Spring.git
+
 SPEC CHECKSUMS:
   Alamofire: 0fe5fd24b4298dc377a6550da7d5f1b30e286fcb
   AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
@@ -205,8 +216,9 @@ SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SearchTextField: 40dc3cc57def5a211f263cac263622c163bbc25a
   SPPermissions: a8056ef987855e8b231481f61bd8b4cbd3fcfd80
+  Spring: 3d113f14575ef79aec9c5f906dfa4f5001c03254
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 3bfc098e3c35ba7646fce32a554c7c79f450e2e2
+PODFILE CHECKSUM: b3d4c8d66224623d882ccac81e6526d63393f4b9
 
 COCOAPODS: 1.8.4

@@ -11,6 +11,7 @@ import UIKit
 class hubVC: UIViewController {
 
     override func viewDidLoad() {
+        self.hideKeyboardWhenTappedAround()
         super.viewDidLoad()
 //        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
 //        navigationItem.leftBarButtonItem = backButton

@@ -59,6 +59,7 @@ class drivesJoinedVC: UIViewController, UITableViewDelegate,UITableViewDataSourc
     override func viewDidLoad() {
         print("drivesJoinedVC")
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         setUpLocation()
         tableView.delegate = self
         tableView.dataSource = self
