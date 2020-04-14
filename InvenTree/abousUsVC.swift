@@ -8,21 +8,37 @@
 
 import UIKit
 import JGProgressHUD
+import Firebase
 class abousUsVC: UIViewController {
-
+    @IBOutlet weak var tf: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
     @IBAction func submit(_ sender: Any) {
-        let hud = JGProgressHUD.init()
-        hud.show(in:self.view)
-        do {
-            sleep(1)
+        if(tf.text==""){
+            showAlert(msg: "You can't send a blank message!")
+        }else{
+            let hud = JGProgressHUD.init()
+            hud.show(in: self.view)
+            let ref = Database.database().reference().child("msgs-node").childByAutoId()
+            let dic:[String:String]=[
+                "email":globalUser.email,
+                "name":globalUser.givenName,
+                "msg":tf.text!
+            ]
+            ref.setValue(dic) {(error,ref) -> Void in
+                if(error==nil){
+                    hud.dismiss()
+                    showSuccess(msg: "Your message has been recorded")
+                }else{
+                    hud.dismiss()
+                    showAlert(msg: "Unfortunately, your message could not be recorded at this time. Please check your connection.")
+                }
+            }
         }
-        hud.dismiss()
-        showSuccess(msg: "Your message has been recorded!")
     }
     
 }

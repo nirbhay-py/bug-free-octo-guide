@@ -53,6 +53,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
              NSLog("One or more of the map styles failed to load. \(error)")
         }
         mapView.isMyLocationEnabled = true
+        
     }
     func setUpLocation(){
         locationManager.delegate = self
@@ -195,7 +196,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
         let mainColor = getColor(aqi: int_aqi)
         let city = self.data["data"]["city"].stringValue
         print(aqi,city)
-       let v = UIButton(frame: CGRect(x:self.view.frame.width-120,y:self.view.frame.height-200,width:100,height: 80))
+       let v = UIButton(frame: CGRect(x:self.view.frame.width-120,y:self.view.frame.height-190,width:100,height: 80))
         v.addTarget(self, action: #selector(self.toAqi), for: .touchUpInside)
         v.backgroundColor = UIColor.white
         v.layer.cornerRadius = 15
@@ -213,7 +214,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
        catLbl.font = catLbl.font.withSize(15)
        catLbl.textAlignment = .center
        catLbl.textColor = mainColor
-       catLbl.text = "AQI."
+       catLbl.text = "AQI"
        v.addSubview(catLbl)
        self.mapView.addSubview(v)
        aqiHUd.dismiss()
@@ -256,7 +257,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
        
         var total = co2res + apres + energyres + avoidedres + stormwaterres
         total = total.round(to: 2)
-        let mainView = UIButton(frame:(CGRect(x: 20, y: 100, width: self.view.frame.width-40, height: 60)))
+        let mainView = UIButton(frame:(CGRect(x: 20, y: 110, width: self.view.frame.width-40, height: 60)))
         mainView.backgroundColor = UIColor.white
         mainView.layer.cornerRadius = 15
         mainView.layer.borderWidth = 2
@@ -264,7 +265,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
         mainView.addTarget(self, action: #selector(self.showBenefitsDetails), for: .touchUpInside)
         var benLbl = UILabel(frame: CGRect(x: 0, y: 0, width: mainView.frame.width-40, height: 40))
         benLbl.center = CGPoint(x:mainView.frame.width/2, y:mainView.frame.height/2)
-        benLbl.text = "Click here to know about total tree benefits."
+        benLbl.text = "Total monetary benefits are $\(total)\nClick here to know more."
         benLbl.adjustsFontSizeToFitWidth = true
         benLbl.textColor = UIColor.systemGreen
         mainView.addSubview(benLbl)

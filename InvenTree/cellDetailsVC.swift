@@ -24,7 +24,10 @@ class cellDetailsVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! tableCell3
         let i = indexPath.row
         cell.emailLbl.text = self.attendees[i].email
-        cell.profilePic.load(url: URL(string: self.attendees[i].photoUrl)!)
+        if(self.attendees[i].photoUrl != "" || self.attendees[i].photoUrl != "Empty"){
+            cell.profilePic.load(url: URL(string: self.attendees[i].photoUrl)!)
+        }
+        
         cell.nameLbl.text = self.attendees[i].name
         return cell
 

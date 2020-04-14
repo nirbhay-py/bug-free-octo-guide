@@ -100,7 +100,7 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
     @IBAction func cameraBtn(_ sender: Any) {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

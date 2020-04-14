@@ -83,7 +83,7 @@ class drivesJoinedVC: UIViewController, UITableViewDelegate,UITableViewDataSourc
             }else{
                 self.drivesCount = val!.count
                 for elem in val!{
-                    let number = elem.value["ph-number"] as! Int
+                    let number = elem.value["ph-number"] as! String
                     let lat = elem.value["location-lat"] as! Double
                     let lon = elem.value["location-lon"] as! Double
                     let user_name = elem.value["organiser-name"] as! String

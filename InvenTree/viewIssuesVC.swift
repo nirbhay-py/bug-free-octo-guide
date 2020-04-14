@@ -10,10 +10,11 @@ import UIKit
 import Firebase
 import JGProgressHUD
 import CoreLocation
-
+import MapKit
 
 class issueCell:UITableViewCell{
     var issue:Issue!
+    var coords:CLLocationCoordinate2D!
     @IBOutlet weak var typeLbl: UILabel!
     @IBOutlet weak var upvotesLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
@@ -32,6 +33,7 @@ class issueCell:UITableViewCell{
                 if(error==nil){
                     hud.dismiss()
                     showSuccess(msg: "Upvoted with success!")
+                    self.upvotesLbl.text = String(self.issue.upvotes)
                 }else{
                     hud.dismiss()
                     showAlert(msg: "Could not upvote. You may have connectivity problems.")
@@ -40,6 +42,15 @@ class issueCell:UITableViewCell{
             
         }
     }
+    
+    @IBAction func toMaps(_ sender: Any) {
+        let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: self.coords.latitude, longitude: self.coords.longitude)))
+               source.name = "You"
+               let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: issue.location.latitude, longitude: issue.location.longitude)))
+        destination.name = self.issue.user_name + "'s issue."
+               MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+    }
+    
 }
 
 class viewIssuesVC: UIViewController,CLLocationManagerDelegate,UITableViewDelegate,UITableViewDataSource{
@@ -54,6 +65,7 @@ class viewIssuesVC: UIViewController,CLLocationManagerDelegate,UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "issueCell", for: indexPath) as! issueCell
         let i = indexPath.row
         cell.issue = self.issues[i]
+        cell.coords = self.coord
         cell.nameLbl.text = cell.issue.user_name
         cell.issueImg.load(url: URL(string: cell.issue.url)!)
         cell.typeLbl.text = cell.issue.type
@@ -61,7 +73,7 @@ class viewIssuesVC: UIViewController,CLLocationManagerDelegate,UITableViewDelega
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return 220
     }
     
     let locationManager=CLLocationManager()

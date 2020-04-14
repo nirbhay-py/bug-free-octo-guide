@@ -12,6 +12,8 @@ import GoogleSignIn
 import SCLAlertView
 import AuthenticationServices
 import JGProgressHUD
+import CryptoKit
+
 
 var globalUser:GlobalUser = GlobalUser(name: "", email: "", photoUrl: "", treesPlanted: 0, givenName: "")
 
@@ -150,6 +152,8 @@ class signInVC: UIViewController,GIDSignInDelegate,ASAuthorizationControllerDele
         showAlert(msg: error.localizedDescription)
 
     }
+    
+    // Unhashed nonce.
 
        // ASAuthorizationControllerDelegate function for successful authorization
 
@@ -176,9 +180,7 @@ class signInVC: UIViewController,GIDSignInDelegate,ASAuthorizationControllerDele
                     print(error.localizedDescription)
                     showAlert(msg: "Check your connection, you may have problems.")
                     hud.dismiss()
-                    
                 }
-                
             }else{
                 let userDic = [
                     "userID":appleId,

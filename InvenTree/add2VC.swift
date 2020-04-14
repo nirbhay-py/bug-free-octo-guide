@@ -12,33 +12,52 @@ import Firebase
 import CoreLocation
 import GoogleMaps
 
-class add2VC: UIViewController {
+class add2VC: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate{
     var imgData:Data!
     var diameter:String!
     var age:String!
     var species:String!
     var height:String!
-    @IBOutlet weak var mapView: GMSMapView!
+    let hud = JGProgressHUD.init()
+    let locationManager = CLLocationManager()
+    @IBOutlet weak var viewForMap: GMSMapView!
+    
     var coord:CLLocationCoordinate2D!
     override func viewDidLoad() {
         super.viewDidLoad()
-        initMap()
+        setUpLocation()
         // Do any additional setup after loading the view.
     }
+    func setUpLocation(){
+           locationManager.delegate = self
+           locationManager.desiredAccuracy = kCLLocationAccuracyBest
+           hud.show(in: self.view,animated: true)
+           locationManager.startUpdatingLocation()
+       }
+       func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+           print("called")
+           let location:CLLocation = locations[0]
+           coord = location.coordinate
+           locationManager.stopUpdatingLocation()
+           hud.dismiss()
+           initMap()
+       }
+       
     func initMap(){
-        print(self.coord)
+        print(self.coord as Any)
         print("initMap called to thread.")
         let hud = JGProgressHUD.init()
         hud.show(in: self.view)
         let cam = GMSCameraPosition.camera(withTarget: coord, zoom: 16)
-        let mapView = GMSMapView.map(withFrame: self.mapView.frame, camera: cam)
-        mapView.isMyLocationEnabled = true
-        mapView.layer.cornerRadius = 15
+        let mapView = GMSMapView.map(withFrame: self.viewForMap.frame, camera: cam)
         let marker = GMSMarker(position: coord)
+        viewForMap.layer.cornerRadius = 15
         mapView.layer.cornerRadius = 15
         marker.title = "Tree location"
         marker.isDraggable = true
         marker.map = mapView
+        mapView.delegate = self
+        mapView.isMyLocationEnabled = true
         do {
              mapView.mapStyle = try GMSMapStyle(jsonString: mapStyle)
         } catch {

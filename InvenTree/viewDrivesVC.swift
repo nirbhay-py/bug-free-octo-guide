@@ -116,7 +116,9 @@ class tableCell:UITableViewCell{
                                         user_joined_ref.setValue(drive_dic) {(error, ref) -> Void in
                                             if(error == nil){
                                                 hud.dismiss()
+                                                
                                                 showSuccess(msg: "You have successfully joined this drive!")
+                                                self.attendeesLbl.text = attendees
                                             }else{
                                                 hud.dismiss()
                                                 showAlert(msg: error!.localizedDescription)
