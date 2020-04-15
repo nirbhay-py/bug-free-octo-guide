@@ -1254,15 +1254,15 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kYl-3U-Euy">
                                 <rect key="frame" x="20" y="108" width="335" height="539"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <mutableString key="text">Welcome to the Earth — a planet where it is common knowledge that the worst impacts of climate change would be irreversible by 2030 unless we cut our carbon emissions by half. Surprisingly, this same planet experiences 5.25 billion trees being cut down annually (on an average). We, at invenTree, recognised this problem and were driven to make change. 
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Welcome to the Earth — a planet where it is common knowledge that the worst impacts of climate change would be irreversible by 2030 unless we cut our carbon emissions by half. Surprisingly, this same planet experiences 5.25 billion trees being cut down annually (on an average). We, at invenTree, recognised this problem and were driven to make change. 
 
 invenTree is a one-of-a-kind app that attempts to give its users a platform for everything about trees. From looking at the number of trees in your area, to getting a tool to identify the species of any tree around you, to even hosting a plantation drive and getting people to join in, this app powers you with it all. And through all this, we get to our main agenda: an initiative to get people around us to realise the lack of trees around them, plant more, and possibly avoid doomsday in 2030.
 
 With crowdsourcing at its core, we hope to create a unique database of trees, empty planting spaces and tree-related issues. Help us in our journey by contributing more data to assist the the people around you to actually know the status of trees in their city, find a location to plant in our concrete jungles, and even save a tree! And, even if you’re unable to help, enjoy the multiple features the app has to offer: learn about the monetary benefits received from the trees around you, be informed of the current Air Quality Index in you location, get intelligent planting suggestions, and much more!
 
 invenTree is a constantly growing platform that serves as both a medium of education and an excellent facility to tree lovers. Use it in any way that suits you, but ensure that you’re constantly contributing positively to the environment around us!
-</mutableString>
+</string>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1333,8 +1333,8 @@ invenTree is a constantly growing platform that serves as both a medium of educa
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="XTR-N0-RwM"/>
                                 </constraints>
-                                <mutableString key="text">Head Boy at the Jayshree Periwal International School, Jaipur for 2019-20, Arnav has an undying passion for the environment and the health and sanitation of the underprivileged. From leading one of the world’s largest toilet-building campaign, to working to reduce infant mortality, to advocating against tree-logging in his society, he is committed to bring change. An aspiring entrepreneur and engineering enthusiast, Arnav has put forward his scientific brain and entrepreneurial skills to materialise this app with the hope to amplify the tree canopy worldwide.
-</mutableString>
+                                <string key="text">Head Boy at the Jayshree Periwal International School, Jaipur for 2019-20, Arnav has an undying passion for the environment and the health and sanitation of the underprivileged. From leading one of the world’s largest toilet-building campaign, to working to reduce infant mortality, to advocating against tree-logging in his society, he is committed to bring change. An aspiring entrepreneur and engineering enthusiast, Arnav has put forward his scientific brain and entrepreneurial skills to materialise this app with the hope to amplify the tree canopy worldwide.
+</string>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1358,7 +1358,7 @@ invenTree is a constantly growing platform that serves as both a medium of educa
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="RaT-9c-suE"/>
                                     <constraint firstAttribute="height" constant="150" id="kX0-Rr-Osr"/>
                                 </constraints>
-                                <string key="text">Student with a keen interest in using technology to help bring about social change. Striving to develop professional skills in various areas and build upon my passions for mathematics, developing software, and engineering. Can't to change the world!</string>
+                                <string key="text">Student with a keen interest in using technology to help bring about social change. Striving to develop professional skills in various areas and build upon my passions for mathematics, developing software, and engineering. Can't wait to change the world!</string>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2339,7 +2339,7 @@ invenTree is a constantly growing platform that serves as both a medium of educa
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jf-uB-O8F">
                                 <rect key="frame" x="10" y="255" width="355" height="402"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">The region you have chosen is characterised by a dry, arid climate due to its proximity to the desert. It has an average rainfall of about 60cm/year, equating to about six-seven weeks of rainfall. Therefore, there is very less rainfall in the remaining months. We suggest our users to thus plant deciduous trees which are perfectly adapted to shed their leaves and sustain in the long dry periods. This is simply because trees transpire through their leaves, losing a lot of water, so it is an optimum choice for trees in such an ecology to go bare.
+                                <string key="text">The region you have chosen is characterised by a dry, arid climate due to its proximity to the desert. It has an average rainfall of about 60cm/year, equating to about six-seven weeks of rainfall. Therefore, there is very less rainfall in the remaining months. We suggest our users to thus plant deciduous trees which are perfectly adapted to shed their leaves and sustain in the long dry periods. This is simply because trees transpire through their leaves, losing a lot of water, so it is an optimum choice for trees in such an ecology to go bare.
 
 In an age when sustainability and “water budgets” have become catch phrases, we should be planting native deciduous trees that have adapted over millions of years of evolution and can survive without any help whatsoever, at home in precisely these conditions, including the soil, climate, and moisture regime.
 
@@ -2374,7 +2374,7 @@ Following is a list of 25 “dry” trees perfectly suited for your region:
 The selected region also faces extremely poor air quality, and research conducted by the Delhi University has proven that the following trees are the most efficient native trees in trapping harmful gases like carbon dioxide and particulate matter. They are:
 Peepal
 Jamun
-Saptaparni</mutableString>
+Saptaparni</string>
                                 <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

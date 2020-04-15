@@ -31,6 +31,13 @@ class signInVC: UIViewController,GIDSignInDelegate,ASAuthorizationControllerDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+            let firebaseAuth = Auth.auth()
+//        do {
+//          try firebaseAuth.signOut()
+//        } catch let signOutError as NSError {
+//          print ("Error signing out: %@", signOutError)
+//        }
+          
         setupSOAppleSignIn()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
