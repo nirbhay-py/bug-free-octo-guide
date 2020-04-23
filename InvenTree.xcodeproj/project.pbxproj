@@ -22,6 +22,8 @@
 		1CB84AE02440B72D008A53C9 /* tbC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB84ADF2440B72D008A53C9 /* tbC.swift */; };
 		1CB84AE22440B986008A53C9 /* viewBenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB84AE12440B986008A53C9 /* viewBenVC.swift */; };
 		1CB84AE42440D4C0008A53C9 /* add2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB84AE32440D4C0008A53C9 /* add2VC.swift */; };
+		1CBB0ADA24521364003BCCF5 /* teamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBB0AD924521364003BCCF5 /* teamVC.swift */; };
+		1CBB0ADC24521B9D003BCCF5 /* epsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBB0ADB24521B9D003BCCF5 /* epsTableVC.swift */; };
 		1CC252D824295EF900D6479C /* aqiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC252D724295EF900D6479C /* aqiVC.swift */; };
 		1CCC42D32431E0A900E9587F /* drivesJoinedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC42D22431E0A800E9587F /* drivesJoinedVC.swift */; };
 		1CCC42D52431E3B200E9587F /* Drive3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC42D42431E3B200E9587F /* Drive3.swift */; };
@@ -72,6 +74,8 @@
 		1CB84ADF2440B72D008A53C9 /* tbC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tbC.swift; sourceTree = "<group>"; };
 		1CB84AE12440B986008A53C9 /* viewBenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewBenVC.swift; sourceTree = "<group>"; };
 		1CB84AE32440D4C0008A53C9 /* add2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add2VC.swift; sourceTree = "<group>"; };
+		1CBB0AD924521364003BCCF5 /* teamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teamVC.swift; sourceTree = "<group>"; };
+		1CBB0ADB24521B9D003BCCF5 /* epsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = epsTableVC.swift; sourceTree = "<group>"; };
 		1CC252D724295EF900D6479C /* aqiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aqiVC.swift; sourceTree = "<group>"; };
 		1CCC42D22431E0A800E9587F /* drivesJoinedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drivesJoinedVC.swift; sourceTree = "<group>"; };
 		1CCC42D42431E3B200E9587F /* Drive3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive3.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				1CB84ADF2440B72D008A53C9 /* tbC.swift */,
 				1CB84AE12440B986008A53C9 /* viewBenVC.swift */,
 				1CB84AE32440D4C0008A53C9 /* add2VC.swift */,
+				1CBB0AD924521364003BCCF5 /* teamVC.swift */,
+				1CBB0ADB24521B9D003BCCF5 /* epsTableVC.swift */,
 			);
 			path = InvenTree;
 			sourceTree = "<group>";
@@ -340,7 +346,9 @@
 				1C8D0960243DECEA00918D55 /* treeKeyVC.swift in Sources */,
 				1C48B6A52429CC570099FC73 /* hostDriveVC.swift in Sources */,
 				1CE43BC223FF26D600052D94 /* AppUtils.swift in Sources */,
+				1CBB0ADA24521364003BCCF5 /* teamVC.swift in Sources */,
 				1C0ACF22243A48840011F844 /* viewIssuesVC.swift in Sources */,
+				1CBB0ADC24521B9D003BCCF5 /* epsTableVC.swift in Sources */,
 				1CB84AE42440D4C0008A53C9 /* add2VC.swift in Sources */,
 				1CE43BC623FF4AE900052D94 /* mapVC.swift in Sources */,
 				1C7533742428FC3100DAE793 /* addEpsVC.swift in Sources */,

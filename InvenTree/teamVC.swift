@@ -1,18 +1,22 @@
 //
-//  tbC.swift
+//  teamVC.swift
 //  InvenTree
 //
-//  Created by Nirbhay Singh on 10/04/20.
+//  Created by Nirbhay Singh on 23/04/20.
 //  Copyright © 2020 Nirbhay Singh. All rights reserved.
 //
 
 import UIKit
 
-class tbC: UITabBarController {
+class teamVC: UIViewController {
 
+    @IBOutlet weak var p1: UIImageView!
+    @IBOutlet weak var p2: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: true);
+        p1.roundedImage()
+        p2.roundedImage()
+        // Do any additional setup after loading the view.
     }
     
 

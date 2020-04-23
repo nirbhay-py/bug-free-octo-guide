@@ -12,7 +12,7 @@ import Firebase
 import GoogleMaps
 import JGProgressHUD
 
-class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate{
+class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,GMSMapViewDelegate{
     @IBOutlet weak var otherDetailstf: UITextField!
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -81,6 +81,7 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
         marker.title = "Issue location"
         marker.isDraggable = true
         marker.map = mapView
+        mapView.delegate = self
         do {
              mapView.mapStyle = try GMSMapStyle(jsonString: mapStyle)
         } catch {
@@ -116,7 +117,8 @@ class issueVC: UIViewController,CLLocationManagerDelegate,UIPickerViewDataSource
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            self.imgData = pickedImage.pngData()
+            var img = pickedImage.jpeg(.low)
+            self.imgData = img
             self.thumbnail.image = pickedImage
             print(pickedImage.size)
             self.imagePicker.dismiss(animated: true, completion: nil)

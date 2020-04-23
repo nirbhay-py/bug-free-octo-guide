@@ -44,7 +44,10 @@ class viewBenVC: UIViewController {
     @IBOutlet weak var treeBen: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
         treeBen.text = "We have a total of \(treesCount) trees uploaded to our database right now. The total annual  benefits to society from these trees are outlined below."
+        
         popLbls()
         // Do any additional setup after loading the view.
     }

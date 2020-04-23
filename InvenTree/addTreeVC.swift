@@ -86,10 +86,21 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
         let item4 = SearchTextFieldItem(title:"Castor", subtitle:"Ricinus communis")
         let item5 = SearchTextFieldItem(title:"Sheesham", subtitle:"Tecomella Undulata")
         let item6 = SearchTextFieldItem(title:"Kair", subtitle:"Capparis decidua")
-        let item7 = SearchTextFieldItem(title:"Haar Singaar", subtitle:"Nyctanthes arbor-tristis")
+        let item7 = SearchTextFieldItem(title:"Khair", subtitle:"Acacia catechu")
+        let item8 = SearchTextFieldItem(title:"Haar Singaar", subtitle:"Nyctanthes arbor-tristis")
+        let item9 = SearchTextFieldItem(title:"Bel", subtitle:"Aegle marmelos")
+        let item10 = SearchTextFieldItem(title:"Saptaparni", subtitle:"Alstonia Scholars")
+        let item11 = SearchTextFieldItem(title:"Ankol", subtitle:"Alangium salvifolium")
+        let item12 = SearchTextFieldItem(title:"Agar", subtitle:"Aquilaria agallocha")
+        let item13 = SearchTextFieldItem(title:"Hingan, Ingudi", subtitle:"Balanties aegyptiaca")
+        let item14 = SearchTextFieldItem(title:"Bhurja, Bhojpatra", subtitle:"Betula utilis")
+        let item15 = SearchTextFieldItem(title:"Salai guggul", subtitle:"Bowellia serrata")
+        let item16 = SearchTextFieldItem(title:"Chironji", subtitle:"Buchanania cochinchinensis")
+        let item17 = SearchTextFieldItem(title:"Palash", subtitle:"Butea monosperma")
+        let item18 = SearchTextFieldItem(title:"Dhup", subtitle:"Canarium stricturn")
+        
 
-
-        searchTxtBox.filterItems([item1, item2, item3, item4, item5, item6, item7])
+        searchTxtBox.filterItems([item1, item2, item3, item4, item5, item6, item7,item8,item9,item10,item11,item12,item13,item14,item15,item16,item17,item18])
         searchTxtBox.theme.font = UIFont.systemFont(ofSize: 18)
         searchTxtBox.theme.bgColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         searchTxtBox.theme.borderColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
@@ -105,7 +116,8 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            self.imgData = pickedImage.pngData()
+            let img = pickedImage.jpeg(.low)
+            self.imgData = img
             print(pickedImage.size)
             thumbnail.image = pickedImage
             self.imagePicker.dismiss(animated: true, completion: nil)

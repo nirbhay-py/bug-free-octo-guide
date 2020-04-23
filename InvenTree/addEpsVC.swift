@@ -12,7 +12,7 @@ import JGProgressHUD
 import Firebase
 import GoogleMaps
 
-class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate{
+class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,GMSMapViewDelegate{
     
     @IBOutlet weak var thumbnail: UIImageView!
     let locationManager = CLLocationManager()
@@ -73,6 +73,7 @@ class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControll
         marker.title = "Empty planting site location"
         marker.isDraggable = true
         marker.map = mapView
+        mapView.delegate = self
         do {
              mapView.mapStyle = try GMSMapStyle(jsonString: mapStyle)
         } catch {
@@ -93,7 +94,8 @@ class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControll
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            self.imgData = pickedImage.pngData()
+            var img = pickedImage.jpeg(.low)
+            self.imgData = img
             print(pickedImage.size)
             thumbnail.image = pickedImage
             self.imagePicker.dismiss(animated: true, completion: nil)

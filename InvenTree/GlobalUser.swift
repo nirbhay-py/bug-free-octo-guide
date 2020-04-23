@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class GlobalUser {
     var name:String!
@@ -20,5 +21,17 @@ class GlobalUser {
         self.photoUrl = photoUrl
         self.treesPlanted = treesPlanted
         self.givenName = givenName
+    }
+    func refreshUser(){
+        let check_ref = Database.database().reference().child("user-node").child(splitString(str: self.email, delimiter: "."))
+        check_ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? [String:AnyObject] ?? nil
+            if(value != nil){
+                self.treesPlanted = value!["trees-planted"] as! Int
+            }
+        }){ (error) in
+            print(error.localizedDescription)
+            showAlert(msg: error.localizedDescription)
+        }
     }
 }

@@ -20,6 +20,7 @@ var globalUser:GlobalUser = GlobalUser(name: "", email: "", photoUrl: "", treesP
 class signInVC: UIViewController,GIDSignInDelegate,ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding
 
 {
+    @IBOutlet weak var bottomLbl: UILabel!
     
     @IBOutlet weak var googleConst: NSLayoutConstraint!
     
@@ -28,20 +29,14 @@ class signInVC: UIViewController,GIDSignInDelegate,ASAuthorizationControllerDele
         return self.view.window!
     }
     
-
+    @IBOutlet weak var gsigninbtn: GIDSignInButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-            let firebaseAuth = Auth.auth()
-//        do {
-//          try firebaseAuth.signOut()
-//        } catch let signOutError as NSError {
-//          print ("Error signing out: %@", signOutError)
-//        }
-          
-        setupSOAppleSignIn()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
+        setupSOAppleSignIn()
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -63,16 +58,32 @@ class signInVC: UIViewController,GIDSignInDelegate,ASAuthorizationControllerDele
         let name = user.profile.name
         let email = user.profile.email
         let givenName = user.profile.givenName
+        var planted=0
         let photoURL = user.profile.imageURL(withDimension: 150)?.absoluteString
+        let strippedEmail = splitString(str:email!, delimiter:".")
+            print("strippedEmail=\(strippedEmail)")
+        let check_ref = Database.database().reference().child("user-node").child(strippedEmail)
+        check_ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? [String:AnyObject] ?? nil
+            if(value != nil){
+                print("CHECK 69 - User already exists.")
+                planted = value!["trees-planted"] as! Int
+                print("value from db -> \(value!["trees-planted"] as! Int)")
+                print("trees planted by existing user -> \(planted)")
+            }
+        }){ (error) in
+            print(error.localizedDescription)
+            showAlert(msg: error.localizedDescription)
+        }
         let userDic = [
               "userID":userID!,
               "givenName":givenName ?? "Empty",
               "name":name!,
               "email":email!,
               "photoURL":photoURL ?? "Empty",
-              "trees-planted": 0
+              "trees-planted": planted
               ] as [String : Any]
-          let strippedEmail = splitString(str:email!, delimiter:".")
+         
           let ref = Database.database().reference().child("user-node").child(strippedEmail)
           ref.setValue(userDic) { (error, ref) -> Void in
               if(error != nil){
@@ -131,7 +142,7 @@ class signInVC: UIViewController,GIDSignInDelegate,ASAuthorizationControllerDele
 
             btnAuthorization.frame = CGRect(x: 0, y: 0, width: 300, height: 48)
         
-        btnAuthorization.center = CGPoint(x: self.view.center.x, y: self.view.bounds.height-115)
+        btnAuthorization.center = CGPoint(x: self.view.center.x,y:self.view.frame.height-88)
 
            btnAuthorization.addTarget(self, action: #selector(actionHandleAppleSignin), for: .touchUpInside)
 

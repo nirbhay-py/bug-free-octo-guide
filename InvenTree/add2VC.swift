@@ -67,7 +67,7 @@ class add2VC: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate{
         hud.dismiss()
     }
     func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
-        coord = marker.position
+        self.coord = marker.position
         print("Marker moved to \(coord as Any)")
     }
     @IBAction func submit(_ sender: Any) {
@@ -115,6 +115,7 @@ class add2VC: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate{
                                             user_ref.updateChildValues(updates)
                                         })
                                            showSuccess(msg: "This tree has been uploaded!")
+                                        globalUser.treesPlanted += 1
                                            localHud.dismiss()
                                        }
                                        else{

@@ -24,10 +24,12 @@ class profileVC: UIViewController {
     let avoided:Double = 8.32553
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.hideKeyboardWhenTappedAround()
         let trees = Double(globalUser.treesPlanted!)
         if(globalUser.photoUrl != ""){
             profilePic.load(url: URL(string: globalUser.photoUrl)!)
+            profilePic.roundedImage()
         }
         
         nameLbl.text = globalUser.name

@@ -73,7 +73,7 @@ class hostDriveVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate
         hud.dismiss()
     }
     func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
-        coord = marker.position
+        self.coord = marker.position
         print("Marker moved to \(coord as Any)")
     }
     @IBAction func datePicked(_ sender: Any) {

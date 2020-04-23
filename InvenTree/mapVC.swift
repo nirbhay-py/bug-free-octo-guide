@@ -89,11 +89,23 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
                 let name = report.value["user-given-name"] as! String
                 let species = report.value["species"] as! String
                 let height = report.value["height"] as! String
+                let age = report.value["age"] as! String
+                let diameter = report.value["diameter"] as! String
                 let position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 let marker = GMSMarker(position: position)
                 marker.title = species
                 marker.icon = markerImg
-                marker.snippet = "Uploaded by: \(name)"
+                var snippetStr = "Uploaded by: \(name)"
+                if(height != ""){
+                    snippetStr += "\nHeight(m): \(height)"
+                }
+                if(age != ""){
+                    snippetStr += "\nAge(years): \(age)"
+                }
+                if(diameter != ""){
+                    snippetStr += "\nDiameter(m): \(diameter)"
+                }
+                marker.snippet = snippetStr
                 marker.map = self.mapView
             }
         })
