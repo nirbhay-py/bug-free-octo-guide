@@ -8,105 +8,35 @@
 
 import UIKit
 import Firebase
-import GoogleSignIn
 import SCLAlertView
-import AuthenticationServices
 import JGProgressHUD
-import CryptoKit
 
 
 var globalUser:GlobalUser = GlobalUser(name: "", email: "", photoUrl: "", treesPlanted: 0, givenName: "")
 
-class signInVC: UIViewController,GIDSignInDelegate,ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding
+class signInVC: UIViewController
 
 {
-    @IBOutlet weak var bottomLbl: UILabel!
-    
-    @IBOutlet weak var googleConst: NSLayoutConstraint!
-    
 
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return self.view.window!
-    }
+    @IBOutlet weak var mv: UIView!
     
-    @IBOutlet weak var gsigninbtn: GIDSignInButton!
+    @IBOutlet weak var emailTf: UITextField!
+    @IBOutlet weak var pswdTf: UITextField!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        setupSOAppleSignIn()
+         let firebaseAuth = Auth.auth()
+//        do {
+//          try firebaseAuth.signOut()
+//        } catch let signOutError as NSError {
+//          print ("Error signing out: %@", signOutError)
+//        }
         self.hideKeyboardWhenTappedAround()
     }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                showAlert(msg: error.localizedDescription)
-                return
-            }
-        let hud = JGProgressHUD.init()
-        hud.show(in: self.view,animated: true)
-        let userID = user.userID
-        let name = user.profile.name
-        let email = user.profile.email
-        let givenName = user.profile.givenName
-        var planted=0
-        let photoURL = user.profile.imageURL(withDimension: 150)?.absoluteString
-        let strippedEmail = splitString(str:email!, delimiter:".")
-            print("strippedEmail=\(strippedEmail)")
-        let check_ref = Database.database().reference().child("user-node").child(strippedEmail)
-        check_ref.observeSingleEvent(of: .value, with: {(snapshot) in
-            let value = snapshot.value as? [String:AnyObject] ?? nil
-            if(value != nil){
-                print("CHECK 69 - User already exists.")
-                planted = value!["trees-planted"] as! Int
-                print("value from db -> \(value!["trees-planted"] as! Int)")
-                print("trees planted by existing user -> \(planted)")
-            }
-        }){ (error) in
-            print(error.localizedDescription)
-            showAlert(msg: error.localizedDescription)
-        }
-        let userDic = [
-              "userID":userID!,
-              "givenName":givenName ?? "Empty",
-              "name":name!,
-              "email":email!,
-              "photoURL":photoURL ?? "Empty",
-              "trees-planted": planted
-              ] as [String : Any]
-         
-          let ref = Database.database().reference().child("user-node").child(strippedEmail)
-          ref.setValue(userDic) { (error, ref) -> Void in
-              if(error != nil){
-                  hud.dismiss()
-                  showAlert(msg: error?.localizedDescription ?? "There seems to be something wrong with your connection.")
-              }else{
-                  globalUser.name = name!
-                  globalUser.email = email!
-                  globalUser.givenName = givenName!
-                  globalUser.photoUrl = photoURL!
-                  globalUser.treesPlanted = 0
-                  hud.dismiss()
-                  showSuccess(msg: "Signed in with success!")
-                  self.performSegue(withIdentifier: "toDashboard", sender: self)
-            }
-          }
-        }
-    }
-    @available(iOS 9.0, *)
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
-      -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
-    }
+   
     override func viewDidAppear(_ animated: Bool) {
            if(Auth.auth().currentUser != nil){
                print("user not nil")
@@ -135,98 +65,38 @@ class signInVC: UIViewController,GIDSignInDelegate,ASAuthorizationControllerDele
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
           
-    }
-    func setupSOAppleSignIn() {
-
-           let btnAuthorization = ASAuthorizationAppleIDButton()
-
-            btnAuthorization.frame = CGRect(x: 0, y: 0, width: 300, height: 48)
-        
-        btnAuthorization.center = CGPoint(x: self.view.center.x,y:self.view.frame.height-88)
-
-           btnAuthorization.addTarget(self, action: #selector(actionHandleAppleSignin), for: .touchUpInside)
-
-           self.view.addSubview(btnAuthorization)
-
-       }
-    @objc func actionHandleAppleSignin(){
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-
-        let request = appleIDProvider.createRequest()
-
-        request.requestedScopes = [.fullName, .email]
-
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-
-        authorizationController.delegate = self
-
-        authorizationController.presentationContextProvider = self
-
-        authorizationController.performRequests()
-    }
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-
-        print(error.localizedDescription)
-        showAlert(msg: error.localizedDescription)
-
-    }
-    
-    // Unhashed nonce.
-
-       // ASAuthorizationControllerDelegate function for successful authorization
-
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        let hud = JGProgressHUD.init()
-        hud.show(in: self.view)
-        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            // Create an account as per your requirement
-            let appleId = appleIDCredential.user
-            let appleUserFirstName = appleIDCredential.fullName?.givenName
-            let appleUserEmail = appleIDCredential.email
-            if(appleUserEmail==nil){
-                let ref = Database.database().reference().child("user-node").child(splitString(str: appleId, delimiter: "."))
-                ref.observeSingleEvent(of: .value, with: {(snapshot) in
-                    let val = snapshot.value as? [String:Any]
-                    let givenName = val!["givenName"] as! String
-                    let email = val!["email"] as! String
-                    let trees_planted = val!["trees-planted"] as! Int
-                    globalUser = GlobalUser(name: givenName as! String, email: appleId, photoUrl: "", treesPlanted: trees_planted, givenName: givenName)
+    }    
+    @IBAction func loginPressed(_ sender: Any) {
+        if(emailTf.text != "" && pswdTf.text != ""){
+            let hud = JGProgressHUD.init()
+            hud.show(in: self.view)
+            Auth.auth().signIn(withEmail: emailTf.text!, password: pswdTf.text!) { [weak self] authResult, error in
+          guard let strongSelf = self else { return }
+                if(error != nil){
                     hud.dismiss()
-                    showSuccess(msg: "Signed in with success")
-                    self.performSegue(withIdentifier: "toDashboard", sender: nil)
-                }) { (error) in
-                    print(error.localizedDescription)
-                    showAlert(msg: "Check your connection, you may have problems.")
-                    hud.dismiss()
-                }
-            }else{
-                let userDic = [
-                    "userID":appleId,
-                    "givenName":appleUserFirstName,
-                    "name":appleUserFirstName,
-                    "email":appleUserEmail,
-                    "photoURL": "",
-                    "trees-planted": 0
-                    ] as [String : Any]
-                let ref = Database.database().reference().child("user-node").child(splitString(str: appleId, delimiter: "."))
-                ref.setValue(userDic) { (error, ref) -> Void in
-                    if(error != nil){
+                    showAlert(msg: "An error occured. \(error)")
+                }else{
+                    var email = self!.emailTf.text!
+                    email = splitString(str: email, delimiter: ".")
+                    let ref = Database.database().reference().child("user-node").child(email)
+                    ref.observeSingleEvent(of: .value, with: {(snapshot) in
+                        let value = snapshot.value as? NSDictionary
+                        let givenName=value!["givenName"] as! String
+                        let name = value!["name"] as! String
+                        let email = value!["email"] as! String
+                        let photoURL = value!["photoURL"] as! String
+                        let treesPlanted = value!["trees-planted"] as! Int
+                        globalUser = GlobalUser(name: name, email: email, photoUrl: photoURL, treesPlanted: treesPlanted, givenName: givenName)
                         hud.dismiss()
-                        showAlert(msg: error?.localizedDescription ?? "There seems to be something wrong with your connection.")
-                    }else{
-                        globalUser.name = appleUserFirstName ?? appleUserEmail
-                        globalUser.email = appleId
-                        globalUser.givenName = appleUserFirstName ?? appleUserEmail
-                        globalUser.photoUrl = ""
-                        globalUser.treesPlanted = 0
-                        hud.dismiss()
-                        showSuccess(msg: "Signed in with success!")
-                        self.performSegue(withIdentifier: "toDashboard", sender: self)
-                  }
+                        self!.performSegue(withIdentifier: "toDashboard", sender: self)
+                    }){ (error) in
+                        print(error.localizedDescription)
+                        showAlert(msg: error.localizedDescription)
+                    }
                 }
-            }
+        }
+        }else{
+            showAlert(msg: "You can't leave these fields blank.")
         }
     }
-    
-    
 }

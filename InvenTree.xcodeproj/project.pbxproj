@@ -28,6 +28,7 @@
 		1CCC42D32431E0A900E9587F /* drivesJoinedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC42D22431E0A800E9587F /* drivesJoinedVC.swift */; };
 		1CCC42D52431E3B200E9587F /* Drive3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC42D42431E3B200E9587F /* Drive3.swift */; };
 		1CCC42D72431EAA400E9587F /* profileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC42D62431EAA400E9587F /* profileVC.swift */; };
+		1CCDB33D2455601A00263E51 /* registerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCDB33C2455601A00263E51 /* registerVC.swift */; };
 		1CE2B3B2242DA0B200DCDF1D /* hubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2B3B1242DA0B200DCDF1D /* hubVC.swift */; };
 		1CE2B3B4242DA89D00DCDF1D /* yourDrivesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2B3B3242DA89D00DCDF1D /* yourDrivesVC.swift */; };
 		1CE2B3B6242DACEB00DCDF1D /* Drive2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2B3B5242DACEB00DCDF1D /* Drive2.swift */; };
@@ -80,6 +81,7 @@
 		1CCC42D22431E0A800E9587F /* drivesJoinedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drivesJoinedVC.swift; sourceTree = "<group>"; };
 		1CCC42D42431E3B200E9587F /* Drive3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive3.swift; sourceTree = "<group>"; };
 		1CCC42D62431EAA400E9587F /* profileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileVC.swift; sourceTree = "<group>"; };
+		1CCDB33C2455601A00263E51 /* registerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerVC.swift; sourceTree = "<group>"; };
 		1CE2B3B1242DA0B200DCDF1D /* hubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hubVC.swift; sourceTree = "<group>"; };
 		1CE2B3B3242DA89D00DCDF1D /* yourDrivesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourDrivesVC.swift; sourceTree = "<group>"; };
 		1CE2B3B5242DACEB00DCDF1D /* Drive2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive2.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				1CB84AE32440D4C0008A53C9 /* add2VC.swift */,
 				1CBB0AD924521364003BCCF5 /* teamVC.swift */,
 				1CBB0ADB24521B9D003BCCF5 /* epsTableVC.swift */,
+				1CCDB33C2455601A00263E51 /* registerVC.swift */,
 			);
 			path = InvenTree;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				1CE2B3B6242DACEB00DCDF1D /* Drive2.swift in Sources */,
 				1CE2B3BA242DBAFE00DCDF1D /* cellDetailsVC.swift in Sources */,
 				1CE2B3B2242DA0B200DCDF1D /* hubVC.swift in Sources */,
+				1CCDB33D2455601A00263E51 /* registerVC.swift in Sources */,
 				1CE43BA623FF235F00052D94 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
