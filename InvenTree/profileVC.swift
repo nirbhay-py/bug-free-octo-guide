@@ -45,13 +45,13 @@ class profileVC: UIViewController {
         // Do any additional setup after loading the view.
         if(trees<11){
             titleLbl.text = "Seedling"
-            descLbl.text = "Based on your statistics, you have just started your journey into the universe of trees with invenTree, much like a little seedling. We hope you stay put for the entire journey and contribute in every way you can."
+            descLbl.text = "Based on your statistics, you have just started your journey into the universe of trees with InvenTree, much like a little seedling. We hope you stay put for the entire journey and contribute in every way you can."
         }else if(trees<101){
             titleLbl.text = "Plant"
             descLbl.text = "Based on your statistics, you have become a dedicated member of the InvenTree community and are constantly adding valuable data to our servers, cementing your presence in this world like a growing plant. Continue on this road and become a key factor in saving the world!"
         }else{
             titleLbl.text = "Tree"
-            descLbl.text = "Based on your statistics, you’re an invaluable part of the invenTree community! You are committed to bringing a massive change to your life, and that of everyone around you, much like a large tree. Keep inspiring those around you to follow in your footsteps!"
+            descLbl.text = "Based on your statistics, you’re an invaluable part of the InvenTree community! You are committed to bringing a massive change to your life, and that of everyone around you, much like a large tree. Keep inspiring those around you to follow in your footsteps!"
         }
     }
     @IBAction func showDetails(_ sender: Any) {

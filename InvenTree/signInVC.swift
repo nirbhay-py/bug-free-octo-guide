@@ -64,7 +64,6 @@ class signInVC: UIViewController
        }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
-          
     }    
     @IBAction func loginPressed(_ sender: Any) {
         if(emailTf.text != "" && pswdTf.text != ""){

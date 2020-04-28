@@ -12,6 +12,7 @@
 		1C30D270243A58C20090C985 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C30D26F243A58C20090C985 /* Issue.swift */; };
 		1C349EB52421710D0060BCC5 /* issueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C349EB42421710D0060BCC5 /* issueVC.swift */; };
 		1C48B6A52429CC570099FC73 /* hostDriveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C48B6A42429CC570099FC73 /* hostDriveVC.swift */; };
+		1C4D15B72457CD4900D14CA9 /* resetPswdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4D15B62457CD4900D14CA9 /* resetPswdVC.swift */; };
 		1C5BA5882440A8AF0021E17A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C5BA5872440A8AF0021E17A /* GoogleService-Info.plist */; };
 		1C7533722428FAB600DAE793 /* addVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7533712428FAB600DAE793 /* addVC.swift */; };
 		1C7533742428FC3100DAE793 /* addEpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7533732428FC3100DAE793 /* addEpsVC.swift */; };
@@ -45,6 +46,7 @@
 		1CE43BC223FF26D600052D94 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE43BC123FF26D600052D94 /* AppUtils.swift */; };
 		1CE43BC423FF2DDD00052D94 /* addTreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE43BC323FF2DDD00052D94 /* addTreeVC.swift */; };
 		1CE43BC623FF4AE900052D94 /* mapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE43BC523FF4AE900052D94 /* mapVC.swift */; };
+		1CF37AE12457C448005C57C2 /* editProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF37AE02457C448005C57C2 /* editProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +67,7 @@
 		1C30D26F243A58C20090C985 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		1C349EB42421710D0060BCC5 /* issueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = issueVC.swift; sourceTree = "<group>"; };
 		1C48B6A42429CC570099FC73 /* hostDriveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostDriveVC.swift; sourceTree = "<group>"; };
+		1C4D15B62457CD4900D14CA9 /* resetPswdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPswdVC.swift; sourceTree = "<group>"; };
 		1C5BA5872440A8AF0021E17A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1C7533712428FAB600DAE793 /* addVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addVC.swift; sourceTree = "<group>"; };
 		1C7533732428FC3100DAE793 /* addEpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addEpsVC.swift; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 		1CE43BC123FF26D600052D94 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		1CE43BC323FF2DDD00052D94 /* addTreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addTreeVC.swift; sourceTree = "<group>"; };
 		1CE43BC523FF4AE900052D94 /* mapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapVC.swift; sourceTree = "<group>"; };
+		1CF37AE02457C448005C57C2 /* editProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editProfileVC.swift; sourceTree = "<group>"; };
 		3424E67706127FFDAD207708 /* Pods-InvenTree.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvenTree.debug.xcconfig"; path = "Target Support Files/Pods-InvenTree/Pods-InvenTree.debug.xcconfig"; sourceTree = "<group>"; };
 		ABBB66EAACE68FEDA469B288 /* Pods-InvenTree.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvenTree.release.xcconfig"; path = "Target Support Files/Pods-InvenTree/Pods-InvenTree.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +187,8 @@
 				1CBB0AD924521364003BCCF5 /* teamVC.swift */,
 				1CBB0ADB24521B9D003BCCF5 /* epsTableVC.swift */,
 				1CCDB33C2455601A00263E51 /* registerVC.swift */,
+				1CF37AE02457C448005C57C2 /* editProfileVC.swift */,
+				1C4D15B62457CD4900D14CA9 /* resetPswdVC.swift */,
 			);
 			path = InvenTree;
 			sourceTree = "<group>";
@@ -340,9 +346,11 @@
 				1CB84AE22440B986008A53C9 /* viewBenVC.swift in Sources */,
 				1CC252D824295EF900D6479C /* aqiVC.swift in Sources */,
 				1CE43BBE23FF253F00052D94 /* Tree.swift in Sources */,
+				1C4D15B72457CD4900D14CA9 /* resetPswdVC.swift in Sources */,
 				1CCC42D72431EAA400E9587F /* profileVC.swift in Sources */,
 				1CE43BC423FF2DDD00052D94 /* addTreeVC.swift in Sources */,
 				1CE43BA423FF235F00052D94 /* AppDelegate.swift in Sources */,
+				1CF37AE12457C448005C57C2 /* editProfileVC.swift in Sources */,
 				1CB14252242C473C0037C77C /* Drive.swift in Sources */,
 				1CE2B3B4242DA89D00DCDF1D /* yourDrivesVC.swift in Sources */,
 				1CB84AE02440B72D008A53C9 /* tbC.swift in Sources */,

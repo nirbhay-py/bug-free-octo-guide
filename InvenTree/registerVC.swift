@@ -118,4 +118,10 @@ class registerVC: UIViewController,UIImagePickerControllerDelegate,UINavigationC
         return emailPred.evaluate(with: email)
     }
 
+    @IBAction func takePic(_ sender: Any) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
+    }
 }
