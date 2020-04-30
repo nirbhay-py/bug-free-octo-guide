@@ -10,12 +10,15 @@ import UIKit
 
 class viewBenVC: UIViewController {
     
-    let tb:Double = 134.63
-    let co2:Double = 2.15749
-    let stormwater:Double = 3.97053
-    let ap:Double = 62.41663
-    let energy:Double = 57.76375
-    let avoided:Double = 8.32553
+    @IBOutlet weak var scrollView: UIScrollView!
+    let tb:Double = 134.63 * 65
+    let co2:Double = 2.15749 * 65
+    let stormwater:Double = 3.97053 * 65
+    let ap:Double = 62.41663 * 65
+    let energy:Double = 57.76375 * 65
+    let avoided:Double = 8.32553 * 65
+    
+    
     let co:Double = 0.1
     let ozone:Double = 8.4
     let no2:Double = 3.49
@@ -44,6 +47,7 @@ class viewBenVC: UIViewController {
     @IBOutlet weak var treeBen: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+150)
 
 
         treeBen.text = "We have a total of \(treesCount) trees uploaded to our database right now. The total annual  benefits to society from these trees are outlined below."

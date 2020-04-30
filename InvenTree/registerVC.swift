@@ -93,7 +93,7 @@ class registerVC: UIViewController,UIImagePickerControllerDelegate,UINavigationC
                                                 globalUser.treesPlanted = 0
                                                 hud.dismiss()
                                                 showSuccess(msg: "Signed in with success!")
-                                                self.performSegue(withIdentifier: "toDashboard", sender: self)
+                                                self.performSegue(withIdentifier: "toOnboard", sender: self)
                                                }
                                                else{
                                                    hud.dismiss()
@@ -124,4 +124,10 @@ class registerVC: UIViewController,UIImagePickerControllerDelegate,UINavigationC
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
+    override func viewWillAppear(_ animated: Bool) {
+           navigationController?.setNavigationBarHidden(false, animated: animated)
+       }
+       override func viewWillDisappear(_ animated: Bool) {
+           navigationController?.setNavigationBarHidden(true, animated: animated)
+       }
 }

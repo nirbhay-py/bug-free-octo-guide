@@ -18,29 +18,28 @@ class epsCell:UITableViewCell{
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var areaLbl: UILabel!
     @IBAction func markRemovedPressed(_ sender: Any) {
-        if(globalUser.treesPlanted<101){
-            showAlert(msg: "You don't have permission to mark this planting site as removed.")
-        }else{
+        
             let hud = JGProgressHUD.init()
             hud.show(in: self.contentView)
             let ref = Database.database().reference().child("eps-node").child(self.cell_eps.key)
-            ref.removeValue { error, _ in
+            let updates = ["removalReq":true]
+            ref.updateChildValues(updates) { error, ref in
                 if(error == nil)
                 {
                     hud.dismiss()
-                    showSuccess(msg: "Removed with success.")
+                    showSuccess(msg: "Requested with success.")
                 }else{
                     hud.dismiss()
                     showAlert(msg: "Please check your connection. You may have connectivity problems.")
+                     print(error)
                 }
-                print(error)
+               
             }
         }
-    }
-    
-    
-    
 }
+    
+    
+    
 
 class eps{
     var area:Double
@@ -77,7 +76,7 @@ class epsTableVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLL
             let i = indexPath.row
             cell.cell_eps = self.eps_arr[i]
             cell.name.text = cell.cell_eps.name
-        cell.areaLbl.text = "Appromaximate area is \(cell.cell_eps.area.round(to: 2)) sq. mt."
+        cell.areaLbl.text = "\(cell.cell_eps.area.round(to: 2)) sq. mt."
         cell.areaLbl.adjustsFontSizeToFitWidth = true
         cell.img.load(url: URL(string: cell.cell_eps.url)!)
         cell.distLbl.text = "\(cell.cell_eps.dist.round(to: 2)) km away from you."

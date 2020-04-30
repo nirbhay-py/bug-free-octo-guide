@@ -12,6 +12,8 @@ import JGProgressHUD
 import CoreLocation
 import GoogleMaps
 import MapKit
+import Foundation
+
 
 class tableCell:UITableViewCell{
     var drive:Drive!
@@ -23,6 +25,7 @@ class tableCell:UITableViewCell{
     @IBOutlet weak var phoneLbl: UILabel!
     @IBOutlet weak var distLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
+    
     @IBAction func joinBtnPressed(_ sender: Any) {
         var keys = [String]()
         var flag:Bool = false
@@ -174,12 +177,22 @@ class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,C
         cell.drive = drives[i]
         cell.userCoord = self.coord
         let attendeesStr:String = cell.drive.attendees + "/" + cell.drive.needed
+        var dateActual:Date!
+        var dateF = DateFormatter()
+        dateF.dateFormat = "E, d MMM yyyy HH:mm:ss"
+        dateActual = dateF.date(from: cell.drive.date)
+        if(dateActual<Date()){
+            cell.isUserInteractionEnabled = false
+            cell.dateLbl.text = "Drive complete!"
+        }else{
+            cell.dateLbl.text = cell.drive.date
+        }
         cell.attendeesLbl.text = attendeesStr
         cell.organiserName.text = cell.drive.name
         cell.phoneLbl.text =  cell.drive.phone
         cell.distLbl.text = String(cell.drive.distance) + " km away"
         cell.goalLbl.text = cell.drive.goal + " trees"
-        cell.dateLbl.text = cell.drive.date
+        
         return cell
     }
     func setUpLocation(){
@@ -242,7 +255,18 @@ class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,C
                     var email = drive.value["user-email"] as! String
                     email = splitString(str: email, delimiter: ".")
                     let distance = self.distance(lat1: self.coord.latitude, lon1: self.coord.longitude, lat2:loc.latitude, lon2: loc.longitude, unit: "K")
+                    print("Attempting to convert \(date) to Date")
+                    var finalDate:Date!
                     let thisDrive = Drive(name: user_name, location: loc, attendees: attendees, needed: needed, phone: phone, distance: Float(distance), date: date, goal: goal,userKey:uKey,driveKey:dKey,email:email)
+//                    if(date != "Not specified"){
+//                        let dateFormatter = DateFormatter()
+//                        dateFormatter.dateFormat = "dd/MM/yy, HH:mm"
+//                        let convertedDate = dateFormatter.date(from: date)
+//                        let calendar = Calendar.current
+//                        let components = calendar.dateComponents([.year, .month, .day, .hour], from: convertedDate!)
+//                         finalDate = calendar.date(from:components)
+//                         thisDrive.dateActual = finalDate
+//                    }
                     self.drives.append(thisDrive)
                     self.tableView.reloadData()
                     self.sortDrives()
@@ -284,5 +308,5 @@ class viewDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,C
         self.drives.sort(by: { $0.distance < $1.distance })
         self.tableView.reloadData()
     }
-
 }
+

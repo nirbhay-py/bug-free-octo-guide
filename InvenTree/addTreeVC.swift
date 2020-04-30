@@ -47,7 +47,7 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        infoLbl.text = "Hi, "+globalUser.givenName+". Follow the instructions below to add a tree to our servers. Your current location will be used to mark the tree on our map."
+        infoLbl.text = "Hi, "+globalUser.givenName+". Follow the instructions below to add a tree to our servers."
         setUpLocation()
         setUpSearchBox()
         self.hideKeyboardWhenTappedAround()
@@ -138,7 +138,7 @@ class addTreeVC: UIViewController,CLLocationManagerDelegate,UIImagePickerControl
     }
     @IBAction func openLink(_ sender: Any) {
         
-        let svc = SFSafariViewController(url: URL(string:"http://www.flowersofindia.net/")!)
+        let svc = SFSafariViewController(url: URL(string:"http://flowersofindia.net/treeid/index.html")!)
         present(svc, animated: true, completion: nil)
     }
 }

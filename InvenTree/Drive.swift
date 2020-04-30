@@ -21,6 +21,7 @@ class Drive{
     var userKey:String!
     var driveKey:String!
     var email:String!
+    var dateActual:Date!
     init(name:String,location:CLLocationCoordinate2D,attendees:String,needed:String, phone:String!,  distance:Float,date:String,goal:String,userKey:String,driveKey:String,email:String) {
         self.name = name
         self.location = location

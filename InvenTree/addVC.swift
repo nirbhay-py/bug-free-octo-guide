@@ -19,10 +19,10 @@ class addVC: UIViewController {
         welcomeLbl.text = "Hi, "+globalUser.givenName+". You can add issues, trees, and empty planting sites to the InvenTree Map by following the directions below."
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
-        addIssue.layer.cornerRadius = 15
-        addEps.layer.cornerRadius = 15
+//        addIssue.layer.cornerRadius = 15
+//        addEps.layer.cornerRadius = 15
         self.hideKeyboardWhenTappedAround()
-        addTree.layer.cornerRadius = 15
+//        addTree.layer.cornerRadius = 15
         // Do any additional setup after loading the view.
     }
     

@@ -66,6 +66,7 @@ class signInVC: UIViewController
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }    
     @IBAction func loginPressed(_ sender: Any) {
+        print("loginPressed")
         if(emailTf.text != "" && pswdTf.text != ""){
             let hud = JGProgressHUD.init()
             hud.show(in: self.view)
@@ -90,12 +91,15 @@ class signInVC: UIViewController
                         self!.performSegue(withIdentifier: "toDashboard", sender: self)
                     }){ (error) in
                         print(error.localizedDescription)
-                        showAlert(msg: error.localizedDescription)
+                        showAlert(msg:"An error occured. Your email address may be badly formatted, or the email-password combination may be incorrect. Please re-try.")
                     }
                 }
         }
         }else{
             showAlert(msg: "You can't leave these fields blank.")
         }
+    }
+    @IBAction func showSignInInfo(_ sender: Any) {
+        showInfo(msg: "In order to protect the integrity of our database and prevent any tampering with our users' data, we require users to be signed in via our secure and custom authentication system. Rest assured, your data will never be shared with anyone else.")
     }
 }

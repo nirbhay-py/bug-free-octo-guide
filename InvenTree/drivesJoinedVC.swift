@@ -46,6 +46,16 @@ class drivesJoinedVC: UIViewController, UITableViewDelegate,UITableViewDataSourc
         let i = indexPath.row
         cell.drive = self.drives[i]
         cell.contactLbl.text = cell.drive.number
+        var dateActual:Date!
+        var dateF = DateFormatter()
+        dateF.dateFormat = "E, d MMM yyyy HH:mm:ss"
+        dateActual = dateF.date(from: cell.drive.date)
+        if(dateActual<Date()){
+            cell.isUserInteractionEnabled = false
+            cell.dateLbl.text = "Drive complete!"
+        }else{
+            cell.dateLbl.text = cell.drive.date
+        }
         cell.nameLbl.text = cell.drive.name
         cell.dateLbl.text = cell.drive.date
         cell.coords = self.coords

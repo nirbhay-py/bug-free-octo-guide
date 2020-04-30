@@ -18,6 +18,8 @@
 		1C7533742428FC3100DAE793 /* addEpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7533732428FC3100DAE793 /* addEpsVC.swift */; };
 		1C8D0960243DECEA00918D55 /* treeKeyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8D095F243DECE900918D55 /* treeKeyVC.swift */; };
 		1C8D0962243DF27200918D55 /* abousUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8D0961243DF27200918D55 /* abousUsVC.swift */; };
+		1C94BF1F245AEAA2007C8A39 /* addIssue2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94BF1E245AEAA2007C8A39 /* addIssue2VC.swift */; };
+		1C94BF23245B01E6007C8A39 /* hostDrive2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C94BF22245B01E6007C8A39 /* hostDrive2VC.swift */; };
 		1CB14250242C40CF0037C77C /* viewDrivesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1424F242C40CF0037C77C /* viewDrivesVC.swift */; };
 		1CB14252242C473C0037C77C /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB14251242C473C0037C77C /* Drive.swift */; };
 		1CB84AE02440B72D008A53C9 /* tbC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB84ADF2440B72D008A53C9 /* tbC.swift */; };
@@ -26,6 +28,7 @@
 		1CBB0ADA24521364003BCCF5 /* teamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBB0AD924521364003BCCF5 /* teamVC.swift */; };
 		1CBB0ADC24521B9D003BCCF5 /* epsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBB0ADB24521B9D003BCCF5 /* epsTableVC.swift */; };
 		1CC252D824295EF900D6479C /* aqiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC252D724295EF900D6479C /* aqiVC.swift */; };
+		1CC2E749245AA7C0008D96CA /* onboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2E748245AA7C0008D96CA /* onboardingVC.swift */; };
 		1CCC42D32431E0A900E9587F /* drivesJoinedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC42D22431E0A800E9587F /* drivesJoinedVC.swift */; };
 		1CCC42D52431E3B200E9587F /* Drive3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC42D42431E3B200E9587F /* Drive3.swift */; };
 		1CCC42D72431EAA400E9587F /* profileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC42D62431EAA400E9587F /* profileVC.swift */; };
@@ -73,6 +76,8 @@
 		1C7533732428FC3100DAE793 /* addEpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addEpsVC.swift; sourceTree = "<group>"; };
 		1C8D095F243DECE900918D55 /* treeKeyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = treeKeyVC.swift; sourceTree = "<group>"; };
 		1C8D0961243DF27200918D55 /* abousUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = abousUsVC.swift; sourceTree = "<group>"; };
+		1C94BF1E245AEAA2007C8A39 /* addIssue2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addIssue2VC.swift; sourceTree = "<group>"; };
+		1C94BF22245B01E6007C8A39 /* hostDrive2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostDrive2VC.swift; sourceTree = "<group>"; };
 		1CB1424F242C40CF0037C77C /* viewDrivesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewDrivesVC.swift; sourceTree = "<group>"; };
 		1CB14251242C473C0037C77C /* Drive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
 		1CB84ADF2440B72D008A53C9 /* tbC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tbC.swift; sourceTree = "<group>"; };
@@ -81,6 +86,7 @@
 		1CBB0AD924521364003BCCF5 /* teamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teamVC.swift; sourceTree = "<group>"; };
 		1CBB0ADB24521B9D003BCCF5 /* epsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = epsTableVC.swift; sourceTree = "<group>"; };
 		1CC252D724295EF900D6479C /* aqiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aqiVC.swift; sourceTree = "<group>"; };
+		1CC2E748245AA7C0008D96CA /* onboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingVC.swift; sourceTree = "<group>"; };
 		1CCC42D22431E0A800E9587F /* drivesJoinedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drivesJoinedVC.swift; sourceTree = "<group>"; };
 		1CCC42D42431E3B200E9587F /* Drive3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive3.swift; sourceTree = "<group>"; };
 		1CCC42D62431EAA400E9587F /* profileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileVC.swift; sourceTree = "<group>"; };
@@ -189,6 +195,9 @@
 				1CCDB33C2455601A00263E51 /* registerVC.swift */,
 				1CF37AE02457C448005C57C2 /* editProfileVC.swift */,
 				1C4D15B62457CD4900D14CA9 /* resetPswdVC.swift */,
+				1CC2E748245AA7C0008D96CA /* onboardingVC.swift */,
+				1C94BF1E245AEAA2007C8A39 /* addIssue2VC.swift */,
+				1C94BF22245B01E6007C8A39 /* hostDrive2VC.swift */,
 			);
 			path = InvenTree;
 			sourceTree = "<group>";
@@ -362,9 +371,12 @@
 				1CBB0ADC24521B9D003BCCF5 /* epsTableVC.swift in Sources */,
 				1CB84AE42440D4C0008A53C9 /* add2VC.swift in Sources */,
 				1CE43BC623FF4AE900052D94 /* mapVC.swift in Sources */,
+				1CC2E749245AA7C0008D96CA /* onboardingVC.swift in Sources */,
+				1C94BF23245B01E6007C8A39 /* hostDrive2VC.swift in Sources */,
 				1C7533742428FC3100DAE793 /* addEpsVC.swift in Sources */,
 				1CB14250242C40CF0037C77C /* viewDrivesVC.swift in Sources */,
 				1CE43BC023FF267200052D94 /* signInVC.swift in Sources */,
+				1C94BF1F245AEAA2007C8A39 /* addIssue2VC.swift in Sources */,
 				1C7533722428FAB600DAE793 /* addVC.swift in Sources */,
 				1CE2B3B8242DAD2100DCDF1D /* Attendee.swift in Sources */,
 				1CE2B3B6242DACEB00DCDF1D /* Drive2.swift in Sources */,

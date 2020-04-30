@@ -76,8 +76,6 @@ PODS:
   - GoogleMaps/Base (3.8.0)
   - GoogleMaps/Maps (3.8.0):
     - GoogleMaps/Base
-  - GooglePlaces (3.8.0):
-    - GoogleMaps/Base (= 3.8.0)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
@@ -115,6 +113,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - OnboardKit (1.5.0)
   - PromisesObjC (1.2.8)
   - SCLAlertView (0.8)
   - SearchTextField (1.2.4)
@@ -135,9 +134,9 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - GoogleMaps
-  - GooglePlaces
   - GoogleSignIn
   - JGProgressHUD
+  - OnboardKit
   - SCLAlertView
   - SearchTextField
   - SPPermissions/Camera
@@ -164,7 +163,6 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleMaps
-    - GooglePlaces
     - GoogleSignIn
     - GoogleUtilities
     - GTMAppAuth
@@ -172,6 +170,7 @@ SPEC REPOS:
     - JGProgressHUD
     - leveldb-library
     - nanopb
+    - OnboardKit
     - PromisesObjC
     - SCLAlertView
     - SearchTextField
@@ -204,7 +203,6 @@ SPEC CHECKSUMS:
   GoogleDataTransport: a857c6a002d201b524dd4bc2ed7e7355ed07e785
   GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
   GoogleMaps: 7c8d66d70e4e8c300f43a7219d8fdaad7b325a9a
-  GooglePlaces: d5f70c3e9e427964fdeca1301a665d276ccd8754
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
@@ -212,6 +210,7 @@ SPEC CHECKSUMS:
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  OnboardKit: 73a4e9c9a1ae88afee0514ac3f2bc4f82126b66e
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SearchTextField: 40dc3cc57def5a211f263cac263622c163bbc25a
@@ -219,6 +218,6 @@ SPEC CHECKSUMS:
   Spring: 3d113f14575ef79aec9c5f906dfa4f5001c03254
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: b3d4c8d66224623d882ccac81e6526d63393f4b9
+PODFILE CHECKSUM: c366cd5bbf828bb11de12418a60f8f794a49da29
 
 COCOAPODS: 1.8.4

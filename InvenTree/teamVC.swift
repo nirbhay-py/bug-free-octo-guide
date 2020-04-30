@@ -14,8 +14,8 @@ class teamVC: UIViewController {
     @IBOutlet weak var p2: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        p1.roundedImage()
-        p2.roundedImage()
+//        p1.roundedImage()
+//        p2.roundedImage()
         // Do any additional setup after loading the view.
     }
     

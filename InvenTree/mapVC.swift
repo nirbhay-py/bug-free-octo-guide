@@ -124,7 +124,11 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
                 let resolved = report.value["issue-resolved"] as! Bool
                 let position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 let marker = GMSMarker(position: position)
-                marker.title = desc
+                if(desc=="Other"){
+                    marker.title = report.value["issue-details"] as! String ?? "Other"
+                }else{
+                    marker.title = desc
+                }
                 if(resolved){
                     marker.icon = resolvedImg
                 }else{
@@ -143,7 +147,7 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
                 for report in reports{
                     let lat = report.value["location-lat"] as! Double
                     let lon = report.value["location-lon"] as! Double
-                    let time = report.value["time"] as! String
+                    let time = report.value["time"] as! String ?? "Not specified"
                     let attendees = report.value["attendees"] as! String
                     let name = report.value["user-name"] as! String
                     let needed = report.value["volunteers-req"] as! String
@@ -152,11 +156,12 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
                     let position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                     let marker = GMSMarker(position: position)
                     marker.icon = img
-                    marker.title = time + " Goal: " + goal + " trees"
+                    marker.title = time
                     var str = "Organised by: " + String(name)
                     str += "\nPhone: " + phone
                     str += "\nAttending: " + String(attendees)
                     str += "\nVolunteers needed: " + String(needed)
+                    str += " Goal: " + goal + " trees"
                     marker.snippet = str
                     marker.map = self.mapView
                 }
@@ -169,12 +174,12 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
                 let lat = report.value["location-lat"] as! Double
                 let lon = report.value["location-lon"] as! Double
                 let name = report.value["user-given-name"] as! String
-                let approx_area = report.value["approx-area"] as! NSNumber
+                let approx_area = report.value["approx-area"] as! Double
                 let position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 let marker = GMSMarker(position: position)
                 marker.title = "Empty planting site"
                 marker.icon = markerImg
-                marker.snippet = "Uploaded by: \(name)\nApproximate area: \(approx_area) square mt."
+                marker.snippet = "Uploaded by: \(name)\nApproximate area: \(approx_area.round(to: 2)) square mt."
                 marker.map = self.mapView
             }
             
@@ -269,15 +274,17 @@ class mapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
        
         var total = co2res + apres + energyres + avoidedres + stormwaterres
         total = total.round(to: 2)
+        total *= 65
         let mainView = UIButton(frame:(CGRect(x: 20, y: 110, width: self.view.frame.width-40, height: 60)))
         mainView.backgroundColor = UIColor.white
         mainView.layer.cornerRadius = 15
         mainView.layer.borderWidth = 2
         mainView.layer.borderColor = UIColor.systemGreen.cgColor
         mainView.addTarget(self, action: #selector(self.showBenefitsDetails), for: .touchUpInside)
-        var benLbl = UILabel(frame: CGRect(x: 0, y: 0, width: mainView.frame.width-40, height: 40))
+        var benLbl = UILabel(frame: CGRect(x: 0, y: 0, width: mainView.frame.width, height: 40))
         benLbl.center = CGPoint(x:mainView.frame.width/2, y:mainView.frame.height/2)
-        benLbl.text = "Total monetary benefits are $\(total)\nClick here to know more."
+        benLbl.text = "We've saved ~₹\(total.round(to: 2)). Learn more."
+        benLbl.textAlignment = .center
         benLbl.adjustsFontSizeToFitWidth = true
         benLbl.textColor = UIColor.systemGreen
         mainView.addSubview(benLbl)

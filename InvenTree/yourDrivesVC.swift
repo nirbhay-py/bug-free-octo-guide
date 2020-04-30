@@ -51,6 +51,19 @@ class yourDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         let i = indexPath.row
         cell.dateLbl.text = drives[i].date
         cell.drive = drives[i]
+        if(cell.drive.date != "Not specified"){
+            var dateActual:Date!
+            let dateF = DateFormatter()
+            dateF.dateFormat = "E, d MMM yyyy HH:mm:ss"
+            dateActual = dateF.date(from: cell.drive.date)
+            if(dateActual<Date()){
+                cell.isUserInteractionEnabled = false
+                cell.dateLbl.text = "Drive complete!"
+            }else{
+                cell.dateLbl.text = cell.drive.date
+            }
+        }
+        
         cell.attendeesLbl.text = drives[i].num_attendees
         cell.goalLbl.text = drives[i].goal + " trees"
         return cell
@@ -100,9 +113,9 @@ class yourDrivesVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
                         }
                     }
                     cnt += 1
-                    let time = drive.value["time"] as! String
-                    let goal = drive.value["tree-goal"] as! String
-                    let attendees = drive.value["attendees"] as! String
+                    let time = drive.value["time"] as? String ?? "Not specified"
+                    let goal = drive.value["tree-goal"] as! String ?? "Not specified"
+                    let attendees = drive.value["attendees"] as! String ?? "Not specified"
                     let lat = drive.value["location-lat"] as! Double
                     let lon = drive.value["location-lon"] as! Double
                     let pos = CLLocationCoordinate2DMake(lat, lon)

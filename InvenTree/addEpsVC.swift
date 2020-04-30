@@ -29,7 +29,8 @@ class addEpsVC: UIViewController, CLLocationManagerDelegate,UINavigationControll
         self.hideKeyboardWhenTappedAround()
         self.viewForMap.layer.cornerRadius = 15
         super.viewDidLoad()
-        welcomeLbl.text = "Hi, "+globalUser.givenName+". Follow the instructions below to add an empty planting site to the InvenTree Map. Adding empty planting sites can help fellow users plant new trees and potentially identify locations to host drives."
+
+        welcomeLbl.text = "Hi, "+globalUser.givenName+". Follow the instructions below to add an empty planting site to the InvenTree Map."
         setUpLocation()
         // Do any additional setup after loading the view.
     }
