@@ -29,6 +29,7 @@ class cellDetailsVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         }
         
         cell.nameLbl.text = self.attendees[i].name
+        cell.profilePic.roundedImage()
         return cell
 
     }

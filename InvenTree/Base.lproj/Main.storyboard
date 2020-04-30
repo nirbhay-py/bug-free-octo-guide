@@ -3282,7 +3282,7 @@ invenTree is a constantly growing platform that serves as both a medium of educa
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRZ-dY-hIc">
-                                                    <rect key="frame" x="52" y="9" width="41.5" height="24"/>
+                                                    <rect key="frame" x="52" y="9" width="113" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -3296,7 +3296,7 @@ invenTree is a constantly growing platform that serves as both a medium of educa
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4a-qG-vh5">
-                                                    <rect key="frame" x="113.5" y="9" width="200" height="24"/>
+                                                    <rect key="frame" x="170" y="9" width="200" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="200" id="Drg-TJ-1sH"/>
                                                     </constraints>
@@ -3319,7 +3319,7 @@ invenTree is a constantly growing platform that serves as both a medium of educa
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6d-k9-vFd">
-                                                    <rect key="frame" x="113.5" y="46" width="200" height="24"/>
+                                                    <rect key="frame" x="170" y="46" width="200" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="200" id="f57-fs-XHe"/>
                                                     </constraints>
@@ -3383,12 +3383,13 @@ invenTree is a constantly growing platform that serves as both a medium of educa
                                                 <constraint firstItem="ceu-Uz-5rv" firstAttribute="top" secondItem="UPT-zl-0AB" secondAttribute="bottom" constant="5" id="Ea6-1b-UDY"/>
                                                 <constraint firstItem="hha-ki-lWe" firstAttribute="leading" secondItem="vq2-bb-KhT" secondAttribute="trailing" constant="20" id="FCI-hl-ubm"/>
                                                 <constraint firstItem="tcs-I2-nFE" firstAttribute="leading" secondItem="9Cn-RT-8ov" secondAttribute="leading" constant="15" id="GQo-9G-Ze0"/>
-                                                <constraint firstItem="H4a-qG-vh5" firstAttribute="leading" secondItem="yRZ-dY-hIc" secondAttribute="trailing" constant="20" id="Kry-LM-25P"/>
+                                                <constraint firstItem="H4a-qG-vh5" firstAttribute="leading" secondItem="yRZ-dY-hIc" secondAttribute="trailing" constant="5" id="LJP-ls-17M"/>
                                                 <constraint firstItem="ceu-Uz-5rv" firstAttribute="leading" secondItem="UPT-zl-0AB" secondAttribute="leading" id="Nhx-hB-bXf"/>
                                                 <constraint firstItem="L6d-k9-vFd" firstAttribute="centerY" secondItem="CG4-Aw-jRU" secondAttribute="centerY" id="OMG-p8-QlE"/>
                                                 <constraint firstItem="hha-ki-lWe" firstAttribute="centerY" secondItem="vq2-bb-KhT" secondAttribute="centerY" id="RbT-lQ-TDB"/>
                                                 <constraint firstItem="UPT-zl-0AB" firstAttribute="leading" secondItem="9Cn-RT-8ov" secondAttribute="leading" constant="15" id="Rqx-AG-PrA"/>
                                                 <constraint firstItem="H4a-qG-vh5" firstAttribute="centerY" secondItem="yRZ-dY-hIc" secondAttribute="centerY" id="T8s-a3-dVr"/>
+                                                <constraint firstAttribute="trailing" secondItem="H4a-qG-vh5" secondAttribute="trailing" constant="5" id="ZLE-aH-EYw"/>
                                                 <constraint firstItem="vq2-bb-KhT" firstAttribute="centerY" secondItem="UPT-zl-0AB" secondAttribute="centerY" id="fll-sj-CGA"/>
                                                 <constraint firstItem="qno-vm-FYV" firstAttribute="top" secondItem="ceu-Uz-5rv" secondAttribute="bottom" constant="2" id="gAA-3y-Kmz"/>
                                                 <constraint firstItem="CG4-Aw-jRU" firstAttribute="leading" secondItem="WFV-ap-Aga" secondAttribute="trailing" constant="5" id="gcc-ev-xF1"/>
@@ -3551,14 +3552,15 @@ The selected region also faces extremely poor air quality, and research conducte
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here are the tree-planting drives being organised closest to you." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4I-UJ-62C">
-                                <rect key="frame" x="20" y="20" width="335" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4I-UJ-62C">
+                                <rect key="frame" x="20" y="20" width="335" height="119.5"/>
+                                <string key="text">Here are the tree-planting drives being organised closest to you. By joining a drive, you consent to your email, name, and profile picture being shared with the organisers.</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="mappin.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7HK-aH-L2k">
-                                <rect key="frame" x="20" y="88.5" width="32" height="31"/>
+                                <rect key="frame" x="20" y="160" width="32" height="31"/>
                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="Vb3-B5-E9r"/>
@@ -3566,13 +3568,13 @@ The selected region also faces extremely poor air quality, and research conducte
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-fA-h9s">
-                                <rect key="frame" x="57" y="88" width="313" height="32"/>
+                                <rect key="frame" x="57" y="159.5" width="313" height="32"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="McX-tu-Y6u">
-                                <rect key="frame" x="0.0" y="140" width="375" height="507"/>
+                                <rect key="frame" x="0.0" y="211.5" width="375" height="435.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="driveCell" rowHeight="357" id="5dK-ET-37t" customClass="tableCell" customModule="InvenTree" customModuleProvider="target">
