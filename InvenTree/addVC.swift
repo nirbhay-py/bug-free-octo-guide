@@ -16,7 +16,7 @@ class addVC: UIViewController {
     @IBOutlet weak var addTree: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        welcomeLbl.text = "Hi, "+globalUser.givenName+". You can add issues, trees, and empty planting sites to the InvenTree Map by following the directions below."
+      
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
 //        addIssue.layer.cornerRadius = 15
