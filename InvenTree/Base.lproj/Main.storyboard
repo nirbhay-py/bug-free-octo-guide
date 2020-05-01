@@ -994,11 +994,6 @@
                                     <segue destination="xsP-F0-EX9" kind="show" id="oPz-uq-6as"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YL9-PU-3dm">
-                                <rect key="frame" x="50" y="131" width="111" height="7"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -4230,7 +4225,6 @@ The selected region also faces extremely poor air quality, and research conducte
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cNH-w1-WFJ"/>
         <segue reference="5EK-gs-zXc"/>
         <segue reference="MgV-GM-Pwf"/>
     </inferredMetricsTieBreakers>
