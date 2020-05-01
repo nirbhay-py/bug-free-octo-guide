@@ -78,6 +78,7 @@ class editProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
                                    if(error == nil){
                                     globalUser.photoUrl = downloadUrl.absoluteString
                                     self.mainImg.load(url: downloadUrl)
+                                    self.mainImg.load(url: downloadUrl)
                                     localHud.dismiss()
                                    }
                                    else{
