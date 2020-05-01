@@ -41,7 +41,7 @@ class profileVC: UIViewController {
         let avoidedres = (trees * (avoided)).round(to:2)
         let total = co2res + stormres + apres + energyres + avoidedres
         
-        tblbl.text = String("₹"+String((total*65).round(to: 2)))
+        tblbl.text = String("₹"+String((total).round(to: 2)))
         // Do any additional setup after loading the view.
         if(trees<11){
             titleLbl.text = "Seedling"
