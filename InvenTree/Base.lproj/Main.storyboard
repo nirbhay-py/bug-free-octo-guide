@@ -3678,8 +3678,8 @@ The selected region also faces extremely poor air quality, and research conducte
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azm-n2-TAg">
-                                                    <rect key="frame" x="162" y="168" width="70.5" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azm-n2-TAg">
+                                                    <rect key="frame" x="162" y="168" width="178" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -3734,6 +3734,7 @@ The selected region also faces extremely poor air quality, and research conducte
                                                 <constraint firstItem="W1r-1e-LU1" firstAttribute="centerY" secondItem="4JJ-Mp-1zs" secondAttribute="centerY" id="Bt8-yH-NE1"/>
                                                 <constraint firstItem="azm-n2-TAg" firstAttribute="leading" secondItem="XSu-Fm-AyQ" secondAttribute="leading" id="D4c-gE-dHd"/>
                                                 <constraint firstItem="TBt-lm-OuD" firstAttribute="leading" secondItem="ary-QR-k3l" secondAttribute="leadingMargin" constant="5" id="DUs-zT-vTi"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="azm-n2-TAg" secondAttribute="trailing" constant="20" id="Dl7-hn-eyh"/>
                                                 <constraint firstItem="onZ-AY-8oW" firstAttribute="centerX" secondItem="ary-QR-k3l" secondAttribute="centerX" id="EXM-6T-gPA"/>
                                                 <constraint firstItem="TBt-lm-OuD" firstAttribute="top" secondItem="xR9-bI-Bbn" secondAttribute="bottom" constant="5" id="Egw-r2-pEc"/>
                                                 <constraint firstItem="XSu-Fm-AyQ" firstAttribute="leading" secondItem="U8b-ex-BBd" secondAttribute="leading" id="EwN-dc-rWm"/>
