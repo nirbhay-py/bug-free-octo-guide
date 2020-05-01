@@ -108,4 +108,25 @@ class editProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     }
     */
 
+    @IBOutlet weak var pswdTf: UITextField!
+    @IBAction func updatePswd(_ sender: Any) {
+        if(pswdTf.text==""){
+            showAlert(msg: "Can't leave this field blank.")
+        }
+        else if(pswdTf.text!.count<8){
+            showAlert(msg: "Choose a longer password!")
+        }else{
+            let hud = JGProgressHUD.init()
+            hud.show(in: self.view)
+            Auth.auth().currentUser?.updatePassword(to: pswdTf.text!) { (error) in
+                if(error==nil){
+                    hud.dismiss()
+                    showSuccess(msg: "Updated with success")
+                }else{
+                    hud.dismiss()
+                    showAlert(msg: "An error occured. You may be having connectivity issues or you may need to sign-in again in order to complete this operation.")
+                }
+            }
+        }
+    }
 }

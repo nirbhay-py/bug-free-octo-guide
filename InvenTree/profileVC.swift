@@ -24,7 +24,7 @@ class profileVC: UIViewController {
     let avoided:Double = 8.32553
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        globalUser.refreshUser(vc:self)
         self.hideKeyboardWhenTappedAround()
         let trees = Double(globalUser.treesPlanted!)
         if(globalUser.photoUrl != ""){

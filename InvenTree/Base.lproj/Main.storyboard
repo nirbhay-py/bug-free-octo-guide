@@ -1718,23 +1718,62 @@
                                     <action selector="choosePic:" destination="F4d-ER-HjF" eventType="touchUpInside" id="9Ak-cF-T0S"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want to change your password? We've got you covered." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYd-fh-2QA">
+                                <rect key="frame" x="20" y="349" width="335" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a new password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lNP-Wt-gCd">
+                                <rect key="frame" x="20" y="410" width="335" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbU-KA-na4" customClass="DesignableButton" customModule="InvenTree" customModuleProvider="target">
+                                <rect key="frame" x="20" y="464" width="335" height="55"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="i6S-uP-3Lr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <state key="normal" title="Update password">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="updatePswd:" destination="F4d-ER-HjF" eventType="touchUpInside" id="KSu-Xn-hqE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="lNP-Wt-gCd" firstAttribute="top" secondItem="JYd-fh-2QA" secondAttribute="bottom" constant="20" id="1jt-kd-Acd"/>
                             <constraint firstItem="U1p-2W-rCy" firstAttribute="leading" secondItem="0gx-Ah-oah" secondAttribute="leading" constant="20" id="1kP-ad-5lY"/>
                             <constraint firstItem="0gx-Ah-oah" firstAttribute="trailing" secondItem="61M-B6-n0k" secondAttribute="trailing" constant="20" id="3Lj-GP-QiY"/>
+                            <constraint firstItem="sbU-KA-na4" firstAttribute="leading" secondItem="0gx-Ah-oah" secondAttribute="leading" constant="20" id="4XT-hJ-8TZ"/>
                             <constraint firstItem="0gx-Ah-oah" firstAttribute="trailing" secondItem="16x-40-ynM" secondAttribute="trailing" constant="20" id="A8Z-Yn-Dfk"/>
+                            <constraint firstItem="sbU-KA-na4" firstAttribute="top" secondItem="lNP-Wt-gCd" secondAttribute="bottom" constant="20" id="Alo-55-26T"/>
                             <constraint firstItem="65X-jX-3zC" firstAttribute="leading" secondItem="0gx-Ah-oah" secondAttribute="leading" constant="20" id="Mn9-ae-baH"/>
                             <constraint firstItem="61M-B6-n0k" firstAttribute="centerY" secondItem="U1p-2W-rCy" secondAttribute="centerY" id="Ovq-qo-Ugv"/>
                             <constraint firstItem="65X-jX-3zC" firstAttribute="top" secondItem="16x-40-ynM" secondAttribute="bottom" constant="20" id="PIt-ca-CmD"/>
+                            <constraint firstItem="0gx-Ah-oah" firstAttribute="trailing" secondItem="JYd-fh-2QA" secondAttribute="trailing" constant="20" id="Swo-5G-nqE"/>
                             <constraint firstItem="61M-B6-n0k" firstAttribute="leading" secondItem="U1p-2W-rCy" secondAttribute="trailing" constant="20" id="Tst-XW-T8o"/>
+                            <constraint firstItem="JYd-fh-2QA" firstAttribute="leading" secondItem="0gx-Ah-oah" secondAttribute="leading" constant="20" id="ah7-op-Xfq"/>
                             <constraint firstItem="EPK-vh-yRZ" firstAttribute="leading" secondItem="0gx-Ah-oah" secondAttribute="leading" constant="20" id="atV-Bm-WwP"/>
                             <constraint firstItem="61M-B6-n0k" firstAttribute="leading" secondItem="U1p-2W-rCy" secondAttribute="trailing" constant="20" id="cwK-Vw-0bs"/>
+                            <constraint firstItem="0gx-Ah-oah" firstAttribute="trailing" secondItem="sbU-KA-na4" secondAttribute="trailing" constant="20" id="gCf-00-EVf"/>
                             <constraint firstItem="0gx-Ah-oah" firstAttribute="trailing" secondItem="65X-jX-3zC" secondAttribute="trailing" constant="20" id="gcz-yH-Jm0"/>
                             <constraint firstItem="0gx-Ah-oah" firstAttribute="trailing" secondItem="EPK-vh-yRZ" secondAttribute="trailing" constant="20" id="iHz-Ai-Ftg"/>
                             <constraint firstItem="16x-40-ynM" firstAttribute="top" secondItem="EPK-vh-yRZ" secondAttribute="bottom" constant="20" id="ifO-Xu-RV3"/>
                             <constraint firstItem="16x-40-ynM" firstAttribute="leading" secondItem="EPK-vh-yRZ" secondAttribute="leading" id="qI1-6e-B41"/>
+                            <constraint firstItem="0gx-Ah-oah" firstAttribute="trailing" secondItem="lNP-Wt-gCd" secondAttribute="trailing" constant="20" id="qXc-LV-GxQ"/>
+                            <constraint firstItem="lNP-Wt-gCd" firstAttribute="leading" secondItem="0gx-Ah-oah" secondAttribute="leading" constant="20" id="rbD-lv-9Rc"/>
                             <constraint firstItem="EPK-vh-yRZ" firstAttribute="top" secondItem="U1p-2W-rCy" secondAttribute="bottom" constant="40" id="sgQ-j2-38N"/>
+                            <constraint firstItem="JYd-fh-2QA" firstAttribute="top" secondItem="65X-jX-3zC" secondAttribute="bottom" constant="20" id="tQf-th-6YJ"/>
                             <constraint firstItem="U1p-2W-rCy" firstAttribute="top" secondItem="0gx-Ah-oah" secondAttribute="top" constant="20" id="xbt-LS-BOn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0gx-Ah-oah"/>
@@ -1743,6 +1782,7 @@
                     <connections>
                         <outlet property="mainImg" destination="U1p-2W-rCy" id="xsw-9m-9Sc"/>
                         <outlet property="nameLbl" destination="61M-B6-n0k" id="Eyf-gJ-Ly9"/>
+                        <outlet property="pswdTf" destination="lNP-Wt-gCd" id="ted-ob-k8d"/>
                         <segue destination="xnZ-MD-EyB" kind="show" identifier="logout" id="MgV-GM-Pwf"/>
                     </connections>
                 </viewController>
@@ -4190,6 +4230,7 @@ The selected region also faces extremely poor air quality, and research conducte
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="cNH-w1-WFJ"/>
         <segue reference="5EK-gs-zXc"/>
         <segue reference="MgV-GM-Pwf"/>
     </inferredMetricsTieBreakers>
