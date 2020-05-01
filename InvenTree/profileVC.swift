@@ -17,11 +17,11 @@ class profileVC: UIViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var tblbl: UILabel!
-    let c02:Double = 2.15749
-    let stormwater:Double = 3.97053
-    let ap:Double = 62.41663
-    let energy:Double = 57.76375
-    let avoided:Double = 8.32553
+    let c02:Double = 2.15749 * 65
+    let stormwater:Double = 3.97053 * 65
+    let ap:Double = 62.41663 * 65
+    let energy:Double = 57.76375 * 65
+    let avoided:Double = 8.32553 * 65
     override func viewDidLoad() {
         super.viewDidLoad()
         globalUser.refreshUser(vc:self)
@@ -62,7 +62,7 @@ class profileVC: UIViewController {
         let energyres = (trees * (energy)).round(to:2)
         let avoidedres = (trees * (avoided)).round(to:2)
         let total = co2res + stormres + apres + energyres + avoidedres
-        let str = " Total benefits: $\(total.round(to: 2))\n CO2 Sequestered: $\(co2res)\n Stormwater runoff avoided: $\(stormres)\n Air pollution removed: $\(apres)\n Total energy usage: $\(energyres)\n Total energy emissions avoided: $\(avoidedres)"
+        let str = " Total benefits: ₹\(total.round(to: 2))\n CO2 Sequestered: ₹\(co2res)\n Stormwater runoff avoided: ₹\(stormres)\n Air pollution removed: ₹\(apres)\n Total energy usage: ₹\(energyres)\n Total energy emissions avoided: ₹\(avoidedres)"
         showInfo(msg: str)
     }
     
